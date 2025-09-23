@@ -37,6 +37,7 @@ public class HomePage {
 
     public void clickWomanCategory() {
         logger.info("Clicking on 'Woman' category button");
+        WaitUtils.waitForElementVisible(BUTTON_WOMAN_CATEGORY);
         WaitUtils.waitForElementClickable(BUTTON_WOMAN_CATEGORY);
         DriverManager.clickElement(BUTTON_WOMAN_CATEGORY);
     }
