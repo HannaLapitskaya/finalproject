@@ -1,6 +1,6 @@
 package by.megatop.ui;
 
-import by.megatop.ui.pages.HomePage;
+import by.megatop.ui.pages.BasePage;
 import by.megatop.ui.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,30 +9,30 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class BaseTest {
 
-    private static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
-    protected HomePage homePage;
+    private static final Logger logger = LogManager.getLogger(BaseTest.class);
+    protected BasePage basePage;
 
     @BeforeEach
     public void setups() {
-        homePage = new HomePage();
-        LOGGER.info("HomePage object created");
+        basePage = new BasePage();
+        logger.info("HomePage object created");
 
-        homePage.openSite();
-        LOGGER.info("Site opened successfully");
+        basePage.openSite();
+        logger.info("Site opened successfully");
 
-        homePage.clickCityByLocation();
-        LOGGER.info("City selection clicked");
+        basePage.clickCityByLocation();
+        logger.info("City selection clicked");
 
-        homePage.clickAcceptCookiesButton();
-        LOGGER.info("Cookies accepted");
+        basePage.clickAcceptCookiesButton();
+        logger.info("Cookies accepted");
 
-        homePage.clickWomanCategory();
-        LOGGER.info("Woman category selected");
+        basePage.clickWomanCategory();
+        logger.info("Woman category selected");
     }
 
     @AfterEach
     public void tearDown() {
         DriverManager.quit();
-        LOGGER.info("Driver quit successfully");
+        logger.info("Driver quit successfully");
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Cart functionality tests")
 public class CartTest extends BaseTest {
+
     private static final Logger LOGGER = LogManager.getLogger();
     private CartPage cartPage;
 
@@ -25,8 +26,6 @@ public class CartTest extends BaseTest {
     @DisplayName("Verify empty cart message is displayed correctly")
     public void shouldDisplayEmptyCartMessageIfCartIsEmpty() {
         LOGGER.info("Starting test: Verify empty cart message");
-        LOGGER.debug("debug");
-        LOGGER.trace("trace");
 
         String expectedResult = "Ваша корзина пуста";
         String actualResult = cartPage.getEmptyCartMessageText();
