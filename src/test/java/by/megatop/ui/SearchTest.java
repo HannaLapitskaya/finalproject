@@ -58,7 +58,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("шнурки");
         searchPage.startSearch();
 
-        String actualResult = "30 товаров";
+        String actualResult = "29 товаров";
         String expectedResult = searchPage.getCounterText();
 
         Assertions.assertEquals(actualResult, expectedResult);

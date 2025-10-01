@@ -32,7 +32,7 @@ public class UnsubscribePage {
         WebElement emailInput = DriverManager.getDriver().findElement(By.xpath(INPUT_EMAIL));
         ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].removeAttribute('autocomplete');", emailInput);
 
-        DriverManager.sendKeys(INPUT_EMAIL,email);
+        DriverManager.sendKeys(INPUT_EMAIL, email);
     }
 
     public void clickSubmitButton() {
@@ -46,6 +46,7 @@ public class UnsubscribePage {
     }
 
     public String getFormHeaderText() {
+        WaitUtils.waitForElementVisible(EMAIL_FORM_HEADER);
         return DriverManager.getTextFromElement(EMAIL_FORM_HEADER);
     }
 
