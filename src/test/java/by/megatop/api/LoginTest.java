@@ -3,11 +3,13 @@ package by.megatop.api;
 import io.restassured.path.json.JsonPath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("API login functionality tests")
 public class LoginTest extends BaseTest {
@@ -15,7 +17,7 @@ public class LoginTest extends BaseTest {
     private static final Logger logger = LogManager.getLogger();
     private static final int UNPROCESSABLE_ENTITY_CODE = 422;
     private static final int INTERNAL_SERVER_ERROR_CODE = 500;
-    private static  final String ERROR_MESSAGE = "Вы ввели неверный номер телефона и/или пароль";
+    private static final String ERROR_MESSAGE = "Вы ввели неверный номер телефона и/или пароль";
 
     @Test
     @DisplayName("Login with incorrect data")
@@ -28,13 +30,12 @@ public class LoginTest extends BaseTest {
         String responseBody = service.getBody();
         JsonPath jsonPath = new JsonPath(service.getBody());
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE);
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue();
-            softly.assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE);
-        });
-        logger.info("Test completed successfully: Login with incorrect data");
+        assertAll(
+                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE)
+        );
     }
 
     @Test
@@ -48,11 +49,11 @@ public class LoginTest extends BaseTest {
 
         int actualStatusCode = service.getStatusCode();
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(actualStatusCode).isEqualTo(INTERNAL_SERVER_ERROR_CODE);
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase("Server Error");
-        });
+        assertAll(
+                () -> assertThat(actualStatusCode).isEqualTo(INTERNAL_SERVER_ERROR_CODE),
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase("Server Error")
+        );
         logger.info("Test completed successfully: Login with a filled-in password and an empty phone number");
     }
 
@@ -67,14 +68,14 @@ public class LoginTest extends BaseTest {
         JsonPath jsonPath = new JsonPath(responseBody);
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE);
-            softly.assertThat(jsonPath.getString("status")).isEqualTo("error");
-            softly.assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE);
-            softly.assertThat(phoneErrors.size()).isEqualTo(1);
-            softly.assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE);
-        });
+        assertAll(
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(phoneErrors.size()).isEqualTo(1),
+                () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
+        );
     }
 
     @Test
@@ -89,15 +90,15 @@ public class LoginTest extends BaseTest {
         JsonPath jsonPath = new JsonPath(responseBody);
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE);
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(jsonPath.getString("status")).isEqualTo("error");
-            softly.assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE);
-            softly.assertThat(phoneErrors).isNotEmpty().isNotNull();
-            softly.assertThat(jsonPath.getMap("errors")).isNotNull().isNotEmpty();
-            softly.assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE);
-        });
+        assertAll(
+                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
+                () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
+                () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
+        );
     }
 
     @Test
@@ -112,18 +113,17 @@ public class LoginTest extends BaseTest {
         JsonPath jsonPath = new JsonPath(responseBody);
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE);
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(jsonPath.getString("status")).isEqualTo("error");
-            softly.assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE);
-            softly.assertThat(jsonPath.getMap("errors")).isNotNull().isNotEmpty();
-            softly.assertThat(jsonPath.getMap("errors")).containsKey("phone");
-            softly.assertThat(phoneErrors).isNotNull().isNotEmpty();
-            softly.assertThat(phoneErrors.size()).isEqualTo(1);
-            softly.assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE);
-        });
+        assertAll(
+                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
+                () -> assertThat(jsonPath.getMap("errors")).asString().contains("phone"),
+                () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
+                () -> assertThat(phoneErrors.size()).isEqualTo(1),
+                () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
+        );
     }
 
     @Test
@@ -138,14 +138,14 @@ public class LoginTest extends BaseTest {
         JsonPath jsonPath = new JsonPath(service.getBody());
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
-        SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE);
-            softly.assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE);
-            softly.assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue();
-            softly.assertThat(responseBody).isNotNull().isNotBlank();
-            softly.assertThat(jsonPath.getMap("errors")).containsKey("phone");
-            softly.assertThat(phoneErrors).isNotEmpty();
-            softly.assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE);
-        });
+        assertAll(
+                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE),
+                () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
+                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(jsonPath.getMap("errors")).asString().contains("phone"),
+                () -> assertThat(phoneErrors).extracting(List::isEmpty).isEqualTo(false),
+                () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
+        );
     }
 }
