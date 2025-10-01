@@ -6,12 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BasePage {
-    private final String URL = "https://megatop.by/";
+
+    private static final Logger logger = LogManager.getLogger();
+    private static final String URL = "https://megatop.by/";
     private static final String BUTTON_ACCEPT_CITY_BY_LOCATION = "//button[@class='btn-gray v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default' and contains(.//text(), 'Да')]";
     private static final String BUTTON_ACCEPT_COOKIES = "//button[@class='btn-black ml-3 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default']";
     private static final String BUTTON_WOMAN_CATEGORY = "//a[contains(text(), 'Женщины')]";
-
-    private static final Logger logger = LogManager.getLogger();
 
     public BasePage() {
 

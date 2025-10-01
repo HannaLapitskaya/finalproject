@@ -15,13 +15,12 @@ import java.util.stream.Collectors;
 
 public class SearchPage {
 
-    private final String BUTTON_SEARCH = "//button[@class='px-0 btn-wrap v-btn v-btn--text theme--light v-size--default white--text']";
-    private final String INPUT_SEARCH = "//input[@ autofocus ='autofocus']";
-    private final String HEADER_SEARCH_PAGE = "//h1[@class='catalog__title text-uppercase']";
-    private final String COUNTER = "//span[@class='ml-4 my-auto catalog__title-count']";
-    private final String SEARCH_RESULTS = "(//div[@class='pa-0 content__title col col-12'])[1]";
-
     private static final Logger logger = LogManager.getLogger();
+    private static final String BUTTON_SEARCH = "//button[@class='px-0 btn-wrap v-btn v-btn--text theme--light v-size--default white--text']";
+    private static final String INPUT_SEARCH = "//input[@ autofocus ='autofocus']";
+    private static final String HEADER_SEARCH_PAGE = "//h1[@class='catalog__title text-uppercase']";
+    private static final String COUNTER = "//span[@class='ml-4 my-auto catalog__title-count']";
+    private static final String SEARCH_RESULTS = "(//div[@class='pa-0 content__title col col-12'])[1]";
 
     public SearchPage() {
 

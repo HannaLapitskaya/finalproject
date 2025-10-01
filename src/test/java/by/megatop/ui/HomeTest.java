@@ -11,7 +11,6 @@ public class HomeTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();
 
-
     @Test
     @DisplayName("The presence of a contact phone number")
     public void contactPhoneNumberShouldBeDisplayed() {

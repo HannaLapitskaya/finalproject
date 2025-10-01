@@ -1,6 +1,7 @@
 package by.megatop.api;
 
 import io.restassured.response.Response;
+
 import static io.restassured.RestAssured.given;
 
 import java.util.HashMap;
@@ -8,9 +9,9 @@ import java.util.Map;
 
 public class LoginService {
 
-    private final String URL = APIConstants.BASE_URL + "/api/v1/user/login";
-    private final String BODY_DEFAULT = "{\"email\":\"375250000000\",\"password\":\"123123123123123\"}";
-    private final String BODY_TEMPLATE = "{\"email\":\"%s\",\"password\":\"%s\"}";
+    private static final String URL = APIConstants.BASE_URL + "/api/v1/user/login";
+    private static final String BODY_DEFAULT = "{\"email\":\"375250000000\",\"password\":\"123123123123123\"}";
+    private static final String BODY_TEMPLATE = "{\"email\":\"%s\",\"password\":\"%s\"}";
 
     private Response response;
 

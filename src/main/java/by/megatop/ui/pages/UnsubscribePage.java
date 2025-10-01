@@ -9,15 +9,14 @@ import org.openqa.selenium.*;
 
 public class UnsubscribePage {
 
-    private final String UNSUBSCRIBE_PAGE_URL = "https://megatop.by/email_unsubscribe";
-    private final String INPUT_EMAIL = "//input[@type='text']";
-    private final String BUTTON_SUBMIT = "(//button[@type='button'])[2]/span";
-    private final String TEXT_SUCCESS_MESSAGE = "//div[contains(text(), 'Вам на почту выслано письмо для отписки от рассылки')]";
-    private final String EMAIL_FORM_HEADER = "(//div[@class='d-flex flex-column']/div)[1]";
-    private final String PLACEHOLDER_INPUT_FIELD = "//div[@class='subscription__input-label']";
-    private final String UNSUBSCRIBE_CONFIRMATION_TEXT = "//div[@class='w-100 d-flex justify-center align-center']/div";
-
     private static final Logger logger = LogManager.getLogger();
+    private static final String UNSUBSCRIBE_PAGE_URL = "https://megatop.by/email_unsubscribe";
+    private static final String INPUT_EMAIL = "//input[@type='text']";
+    private static final String BUTTON_SUBMIT = "(//button[@type='button'])[2]/span";
+    private static final String TEXT_SUCCESS_MESSAGE = "//div[contains(text(), 'Вам на почту выслано письмо для отписки от рассылки')]";
+    private static final String EMAIL_FORM_HEADER = "(//div[@class='d-flex flex-column']/div)[1]";
+    private static final String PLACEHOLDER_INPUT_FIELD = "//div[@class='subscription__input-label']";
+    private static final String UNSUBSCRIBE_CONFIRMATION_TEXT = "//div[@class='w-100 d-flex justify-center align-center']/div";
 
     public UnsubscribePage() {
 

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
 public class UnsubscribeTest {
+
     private static final Logger logger = LogManager.getLogger();
     private UnsubscribePage unsubscribePage;
     private BasePage basePage;

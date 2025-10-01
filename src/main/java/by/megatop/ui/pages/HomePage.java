@@ -6,9 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 public class HomePage {
 
-    private final String SPAN_CONTACT_PHONE = "//span[@class='my-auto']";
-
     private static final Logger logger = LogManager.getLogger();
+    private static final String SPAN_CONTACT_PHONE = "//span[@class='my-auto']";
 
     public HomePage() {
 
