@@ -18,25 +18,29 @@ public class BasePage {
     }
 
     public void openSite() {
+        logger.debug("Opening website: " + URL);
         DriverManager.getDriver().get(URL);
         logger.info("Site opened successfully");
     }
 
     public void clickCityByLocation() {
-        logger.info("Clicking on 'Accept city' button");
+        logger.debug("Clicking on 'Accept city' button");
         WaitUtils.waitForElementClickable(BUTTON_ACCEPT_CITY_BY_LOCATION);
         DriverManager.clickElement(BUTTON_ACCEPT_CITY_BY_LOCATION);
+        logger.info("City accepted by location successfully");
     }
 
     public void clickAcceptCookiesButton() {
-        logger.info("Clicking on 'Accept cookies' button");
+        logger.debug("Clicking on 'Accept cookies' button");
         DriverManager.clickElement(BUTTON_ACCEPT_COOKIES);
+        logger.info("Cookies accepted");
     }
 
     public void clickWomanCategory() {
-        logger.info("Clicking on 'Woman' category button");
+        logger.debug("Clicking on 'Woman' category button");
         WaitUtils.waitForElementVisible(BUTTON_WOMAN_CATEGORY);
         WaitUtils.waitForElementClickable(BUTTON_WOMAN_CATEGORY);
         DriverManager.clickElement(BUTTON_WOMAN_CATEGORY);
+        logger.info("Woman category clicked");
     }
 }

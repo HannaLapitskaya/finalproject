@@ -23,37 +23,46 @@ public class UnsubscribePage {
     }
 
     public void openUnsubscribePage() {
+        logger.debug("Opening unsubscribe page");
         DriverManager.getDriver().get(UNSUBSCRIBE_PAGE_URL);
-        logger.info("Unsubscribe page opened successfully");
+        logger.info("Unsubscribe page opened");
     }
 
     public void sendKeysEmailInput(String email) {
+        logger.debug("Sending keys to email input");
         WebElement emailInput = DriverManager.getDriver().findElement(By.xpath(INPUT_EMAIL));
         ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].removeAttribute('autocomplete');", emailInput);
 
         DriverManager.sendKeys(INPUT_EMAIL, email);
+        logger.info("Email entered: " + email);
     }
 
     public void clickSubmitButton() {
+        logger.debug("Clicking submit button");
         WaitUtils.waitForElementClickable(BUTTON_SUBMIT);
         DriverManager.clickElement(BUTTON_SUBMIT);
+        logger.info("Submit button clicked");
     }
 
     public String getEmailUnsubscribeNotificationText() {
+        logger.debug("Getting email unsubscribe notification text");
         WaitUtils.waitForElementVisible(TEXT_SUCCESS_MESSAGE);
         return DriverManager.getTextFromElement(TEXT_SUCCESS_MESSAGE);
     }
 
     public String getFormHeaderText() {
+        logger.debug("Getting form header text");
         WaitUtils.waitForElementVisible(EMAIL_FORM_HEADER);
         return DriverManager.getTextFromElement(EMAIL_FORM_HEADER);
     }
 
     public String getPlaceholderInputFieldText() {
+        logger.debug("Getting placeholder input field text");
         return DriverManager.getTextFromElement(PLACEHOLDER_INPUT_FIELD);
     }
 
     public String getSuccessfulUnsubscribeText() {
+        logger.debug("Getting successful unsubscribe text");
         return DriverManager.getTextFromElement(UNSUBSCRIBE_CONFIRMATION_TEXT);
     }
 }

@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Login with incorrect data")
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithIncorrectData() {
-        logger.info("Starting test: Login with incorrect data");
+        logger.debug("Starting test: Login with incorrect data");
         service.doRequest();
 
         int actualStatusCode = service.getStatusCode();
@@ -36,12 +36,13 @@ public class LoginTest extends BaseTest {
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
                 () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE)
         );
+        logger.info("Test completed successfully: Login with incorrect data");
     }
 
     @Test
     @DisplayName("Login with a filled-in password and an empty phone number")
     public void shouldReturn500StatusCodeWhenLoginWithEmptyEmailAndEmptyPassword() {
-        logger.info("Starting test: Login with a filled-in password and an empty phone number");
+        logger.debug("Starting test: Login with a filled-in password and an empty phone number");
         service.doRequest("", "");
 
         String responseBody = service.getBody();
@@ -60,7 +61,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Login with valid phone number and empty password should return 422 status cod")
     public void shouldReturn422StatusCodeWhenLoginWithValidPhoneAndEmptyPassword() {
-        logger.info("Login with valid phone number and empty password should return 422 status cod");
+        logger.debug("Starting test: Login with valid phone number and empty password should return 422 status cod");
         service.doRequest("+375255555555", "");
 
         String responseBody = service.getBody();
@@ -76,12 +77,13 @@ public class LoginTest extends BaseTest {
                 () -> assertThat(phoneErrors.size()).isEqualTo(1),
                 () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
         );
+        logger.info("Test completed successfully: Login with valid phone number and empty password should return 422 status cod");
     }
 
     @Test
     @DisplayName("Login with a non-numeric phone number")
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithNonNumericPhone() {
-        logger.info("Login with a non-numeric phone number");
+        logger.debug("Starting test: Login with a non-numeric phone number");
         service.doRequest("test@login.by", "");
 
         int actualStatusCode = service.getStatusCode();
@@ -99,12 +101,13 @@ public class LoginTest extends BaseTest {
                 () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
                 () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
         );
+        logger.info("Test completed successfully: Login with a non-numeric phone number");
     }
 
     @Test
     @DisplayName("Login with a phone number with fewer than 12 digits")
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingFewerThan12Digits() {
-        logger.info("Login with a phone number with fewer than 12 digits");
+        logger.debug("Starting test: Login with a phone number with fewer than 12 digits");
         service.doRequest("37525", "123123123");
 
         int actualStatusCode = service.getStatusCode();
@@ -124,12 +127,13 @@ public class LoginTest extends BaseTest {
                 () -> assertThat(phoneErrors.size()).isEqualTo(1),
                 () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
         );
+        logger.info("Test completed successfully: Login with a phone number with fewer than 12 digits");
     }
 
     @Test
     @DisplayName("Login with a phone number with more than 12 digits")
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingMoreThan12Digits() {
-        logger.info("Login with a phone number with more than 12 digits");
+        logger.debug("Starting test: Login with a phone number with more than 12 digits");
         service.doRequest("3752511111111111111", "123123123");
 
         int actualStatusCode = service.getStatusCode();
@@ -147,5 +151,6 @@ public class LoginTest extends BaseTest {
                 () -> assertThat(phoneErrors).extracting(List::isEmpty).isEqualTo(false),
                 () -> assertThat(phoneErrors.getFirst()).isEqualTo(ERROR_MESSAGE)
         );
+        logger.info("Test completed successfully: Login with a phone number with more than 12 digits");
     }
 }

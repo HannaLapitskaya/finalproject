@@ -18,21 +18,13 @@ public class BaseTest {
         logger.info("HomePage object created");
 
         basePage.openSite();
-        logger.info("Site opened successfully");
-
         basePage.clickCityByLocation();
-        logger.info("City selection clicked");
-
         basePage.clickAcceptCookiesButton();
-        logger.info("Cookies accepted");
-
         basePage.clickWomanCategory();
-        logger.info("Woman category selected");
     }
 
     @AfterEach
     public void tearDown() {
         DriverManager.quit();
-        logger.info("Driver quit successfully");
     }
 }

@@ -14,7 +14,7 @@ public class HomePage {
     }
 
     public String getContactPhoneText() {
-        logger.info("Getting contact phone text");
+        logger.debug("Getting contact phone text");
         return DriverManager.getTextFromElement(SPAN_CONTACT_PHONE);
     }
 }

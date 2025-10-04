@@ -27,37 +27,44 @@ public class SearchPage {
     }
 
     public void openSearchButton() {
-        logger.info("Opening search input");
+        logger.debug("Opening search input");
         DriverManager.clickElement(BUTTON_SEARCH);
+        logger.info("Search input opened");
     }
 
     public void clickSearchInput() {
+        logger.debug("Clicking on search input");
         DriverManager.clickElement(INPUT_SEARCH);
+        logger.info("Search input clicked");
     }
 
     public void sendKeysSearch(String search) {
-        logger.info("Sending keys to search input: " + search);
+        logger.debug("Sending keys to search input");
         WaitUtils.waitForElementClickable(INPUT_SEARCH);
         DriverManager.sendKeys(INPUT_SEARCH, search);
+        logger.info("Search keys entered");
     }
 
     public void startSearch() {
-        logger.info("Starting search by pressing ENTER");
+        logger.debug("Starting search by pressing ENTER");
         Actions actions = new Actions(getDriver());
         actions.sendKeys(Keys.ENTER).perform();
+        logger.info("Search started successfully by pressing ENTER");
     }
 
     public String getSearchPageHeaderText() {
-        logger.info("Getting text from search page header");
+        logger.debug("Getting text from search page header");
         WaitUtils.waitForElementVisible(HEADER_SEARCH_PAGE);
         return DriverManager.getTextFromElement(HEADER_SEARCH_PAGE);
     }
 
     public String getCounterText() {
+        logger.debug("Getting counter text");
         return DriverManager.getTextFromElement(COUNTER);
     }
 
     public List<String> getSearchResultItemsTitleText() {
+        logger.debug("Getting search result items titles");
         return DriverManager.findElements(SEARCH_RESULTS).stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());

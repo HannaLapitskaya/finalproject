@@ -26,7 +26,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("Search page header displays correctly")
     public void shouldDisplayCorrectPageHeaderWhenSearchIsPerformed() {
-        logger.info("Starting test: Search page header displays correctly");
+        logger.debug("Starting test: Search page header displays correctly");
         searchPage.sendKeysSearch("Лоферы");
         searchPage.startSearch();
 
@@ -40,7 +40,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("Zero results for non-existent product")
     public void shouldShow0ResultsCounterWhenNoProductsAreFound() {
-        logger.info("Starting test: Zero results for non-existent product");
+        logger.debug("Starting test: Zero results for non-existent product");
         searchPage.sendKeysSearch("полянка");
         searchPage.startSearch();
 
@@ -54,7 +54,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("Multiple results for existing product")
     public void shouldDisplayNonZeroResultsCounterWhenProductsAreFound() {
-        logger.info("Starting test: Multiple results for existing product");
+        logger.debug("Starting test: Multiple results for existing product");
         searchPage.sendKeysSearch("шнурки");
         searchPage.startSearch();
 
@@ -68,7 +68,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("Single result by product name")
     public void shouldFindExactlyOneProductWhenSearchingByFullProductName() {
-        logger.info("Starting test: Single result by product name");
+        logger.debug("Starting test: Single result by product name");
         searchPage.sendKeysSearch("Крем-краска WiMi");
         searchPage.startSearch();
 
@@ -82,7 +82,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("Single result by article number")
     public void shouldFindExactlyOneProductWhenSearchingByProductArticleNumber() {
-        logger.info("Starting test: Single result by article number");
+        logger.debug("Starting test: Single result by article number");
         searchPage.sendKeysSearch("1403000818");
         searchPage.startSearch();
 
@@ -96,7 +96,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("All results contain search term")
     public void shouldDisplayOnlyProductsContainingSearchTermInTheirTitles() {
-        logger.info("Starting test: All results contain search term");
+        logger.debug("Starting test: All results contain search term");
         searchPage.sendKeysSearch("казаки");
         searchPage.startSearch();
 
@@ -111,7 +111,7 @@ public class SearchTest extends BaseTest {
     @Test
     @DisplayName("First result matches query")
     public void shouldDisplayCorrectProductAsFirstResultWhenSearching() {
-        logger.info("Starting test: First result matches query");
+        logger.debug("Starting test: First result matches query");
         searchPage.sendKeysSearch("кеды");
         searchPage.startSearch();
 

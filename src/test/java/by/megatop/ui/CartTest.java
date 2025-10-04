@@ -16,16 +16,14 @@ public class CartTest extends BaseTest {
 
     @BeforeEach
     public void openCartPage() {
-        logger.info("Opening Cart page");
         cartPage = new CartPage();
         cartPage.clickCartButton();
-        logger.info("Cart page opened successfully");
     }
 
     @Test
     @DisplayName("Verify empty cart message is displayed correctly")
     public void shouldDisplayEmptyCartMessageIfCartIsEmpty() {
-        logger.info("Starting test: Verify empty cart message");
+        logger.debug("Starting test: Verify empty cart message");
 
         String expectedResult = "Ваша корзина пуста";
         String actualResult = cartPage.getEmptyCartMessage();
@@ -37,7 +35,7 @@ public class CartTest extends BaseTest {
     @Test
     @DisplayName("Verify login prompt is displayed for unauthorized users")
     public void shouldDisplayLoginPromptIfUserIsUnauthorized() {
-        logger.info("Starting test: Verify login prompt for unauthorized users");
+        logger.debug("Starting test: Verify login prompt for unauthorized users");
 
         String expectedResult = "Войдите в систему, чтобы увидеть корзину покупок";
         String actualResult = cartPage.getLoginPromptMessage();
@@ -49,7 +47,7 @@ public class CartTest extends BaseTest {
     @Test
     @DisplayName("Verify cart items counter updates when adding item to cart")
     public void shouldUpdateCartCounterWhenAddingItem() {
-        logger.info("Starting test: Verify cart items counter updates when adding item to cart");
+        logger.debug("Starting test: Verify cart items counter updates when adding item to cart");
         cartPage.addItemToCart();
 
         String expectedResult = "В корзине 1 товар";
@@ -62,7 +60,7 @@ public class CartTest extends BaseTest {
     @Test
     @DisplayName("Verify item quantity increases when clicking increase button")
     public void shouldIncreaseItemQuantityWhenClickingIncreaseButton() {
-        logger.info("Starting test: Verify item quantity increases when clicking increase button");
+        logger.debug("Starting test: Verify item quantity increases when clicking increase button");
         cartPage.addItemToCart();
         cartPage.clickIncreaseItemQuantityButton();
 

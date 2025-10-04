@@ -14,7 +14,7 @@ public class HomeTest extends BaseTest {
     @Test
     @DisplayName("The presence of a contact phone number")
     public void contactPhoneNumberShouldBeDisplayed() {
-        logger.info("Starting contact phone number verification test");
+        logger.debug("Starting contact phone number verification test");
         HomePage homePage = new HomePage();
 
         String expectedResult = "7976";

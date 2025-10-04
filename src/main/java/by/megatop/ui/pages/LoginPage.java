@@ -23,37 +23,41 @@ public class LoginPage {
     }
 
     public void clickAccountButton() {
-        logger.info("Clicking on account button");
+        logger.debug("Clicking on account button");
         DriverManager.clickElement(BUTTON_ACCOUNT);
+        logger.info("Account button clicked successfully");
     }
 
     public String getHeaderLoginFormText() {
-        logger.info("Getting login form header text");
+        logger.debug("Getting login form header text");
         return DriverManager.getTextFromElement(HEADER_LOGIN_FORM);
     }
 
     public String getForgotPasswordText() {
-        logger.info("Getting 'Forgot password' link text");
+        logger.debug("Getting 'Forgot password' link text");
         return DriverManager.getTextFromElement(LINK_FORGOT_PASSWORD);
     }
 
     public void sendKeysInputPassword(String password) {
-        logger.info("Entering password in password field");
+        logger.debug("Entering password in password field");
         DriverManager.sendKeys(INPUT_PASSWORD, password);
+        logger.info("Password entered successfully");
     }
 
     public void sendKeysInputPhone(String phone) {
-        logger.info("Entering phone in phone field");
+        logger.debug("Entering phone in phone field");
         DriverManager.sendKeys(INPUT_PHONE, phone);
+        logger.info("Phone number entered successfully");
     }
 
     public void clickButtonSubmitLogin() {
-        logger.info("Clicking on login submit button");
+        logger.debug("Clicking on login submit button");
         DriverManager.clickElement(BUTTON_SUBMIT_LOGIN);
+        logger.info("Login submit button clicked successfully");
     }
 
     public String getErrorEmptyPhoneText() {
-        logger.info("Getting empty phone error message");
+        logger.debug("Getting empty phone error message");
         return DriverManager.getTextFromElement(ERROR_EMPTY_PHONE);
     }
 
@@ -63,12 +67,12 @@ public class LoginPage {
     }
 
     public String getErrorInvalidCredentialsText() {
-        logger.info("Getting invalid credentials error message");
+        logger.debug("Getting incomplete phone error message");
         return DriverManager.getTextFromElement(ERROR_INVALID_CREDENTIALS);
     }
 
     public String getErrorInvalidPhoneOperator() {
-        logger.info("Getting invalid phone operator error message");
+        logger.debug("Getting invalid credentials error message");
         return DriverManager.getTextFromElement(ERROR_INVALID_PHONE_OPERATOR);
     }
 }

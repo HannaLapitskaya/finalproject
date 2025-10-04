@@ -17,15 +17,13 @@ public class LoginTest extends BaseTest {
     @BeforeEach
     public void openLoginForm() {
         loginPage = new LoginPage();
-        logger.info("Opening login form");
-
         loginPage.clickAccountButton();
     }
 
     @Test
     @DisplayName("Verify 'ВХОД' header is present")
     public void shouldDisplayLoginHeaderWhenLoginFormIsOpened() {
-        logger.info("Starting test: Verify 'ВХОД' header is present");
+        logger.debug("Starting test: Verify 'ВХОД' header is present");
 
         String expectedResult = "ВХОД";
         String actualResult = loginPage.getHeaderLoginFormText();
@@ -37,7 +35,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Verify 'Забыли пароль?' link is present")
     public void shouldDisplayForgotPasswordLinkWhenLoginFormIsOpened() {
-        logger.info("Starting test: Verify 'Забыли пароль?' link is present");
+        logger.debug("Starting test: Verify 'Забыли пароль?' link is present");
 
         String expectedResult = "Забыли пароль?";
         String actualResult = loginPage.getForgotPasswordText();
@@ -49,7 +47,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Validate empty phone number field validation")
     public void shouldShowValidationErrorWhenPhoneNumberIsEmpty() {
-        logger.info("Starting test: Validate empty phone number field validation");
+        logger.debug("Starting test: Validate empty phone number field validation");
 
         loginPage.clickButtonSubmitLogin();
 
@@ -63,7 +61,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Validate incomplete phone number validation")
     public void shouldShowValidationErrorWhenPhoneNumberIsIncomplete() {
-        logger.info("Starting test: Validate incomplete phone number validation");
+        logger.debug("Starting test: Validate incomplete phone number validation");
 
         loginPage.sendKeysInputPhone("12");
         loginPage.clickButtonSubmitLogin();
@@ -78,7 +76,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Validate phone number with non-belarusian operator code")
     public void shouldShowValidationErrorWhenPhoneNumberHasNonBelarusianCode() {
-        logger.info("Starting test: Validate phone number with non-belarusian operator code");
+        logger.debug("Starting test: Validate phone number with non-belarusian operator code");
 
         loginPage.sendKeysInputPhone("110000000");
         loginPage.clickButtonSubmitLogin();
@@ -93,7 +91,7 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Verify error message when invalid credentials are used for login")
     public void shouldShowErrorMessageWhenInvalidCredentialsAreUsed() {
-        logger.info("Starting test: Verify error message when invalid credentials are used for login");
+        logger.debug("Starting test: Verify error message when invalid credentials are used for login");
 
         loginPage.sendKeysInputPhone("250000000");
         loginPage.sendKeysInputPassword("213123123123123123");

@@ -28,13 +28,12 @@ public class UnsubscribeTest {
     @AfterEach
     public void tearDown() {
         DriverManager.quit();
-        logger.info("Driver quit successfully");
     }
 
     @Test
     @DisplayName("Successful unsubscribe with valid email format")
     public void shouldSendEmailWhenValidEmailProvided() {
-        logger.info("Starting test: Successful unsubscribe with valid email format");
+        logger.debug("Starting test: Successful unsubscribe with valid email format");
         unsubscribePage.sendKeysEmailInput("test@test.com");
         unsubscribePage.clickSubmitButton();
 
@@ -48,7 +47,7 @@ public class UnsubscribeTest {
     @Test
     @DisplayName("Email input form header presence")
     public void shouldShowHeaderWhenPageOpened() {
-        logger.info("Starting test: Email input form header presence");
+        logger.debug("Starting test: Email input form header presence");
 
         String expectedResult = "Отписаться от email рассылки";
         String actualResult = unsubscribePage.getFormHeaderText();
@@ -60,7 +59,7 @@ public class UnsubscribeTest {
     @Test
     @DisplayName("Email input field placeholder presence")
     public void shouldDisplayPlaceholder_WhenInputRendered() {
-        logger.info("Starting test: Email input field placeholder presence");
+        logger.debug("Starting test: Email input field placeholder presence");
 
         String expectedResult = "Введите свой e-mail";
         String actualResult = unsubscribePage.getPlaceholderInputFieldText();
@@ -72,7 +71,7 @@ public class UnsubscribeTest {
     @Test
     @DisplayName("Already unsubscribed from the newsletter")
     public void shouldConfirmUnsubscription_WhenNoEmailProvided() {
-        logger.info("Starting test: Already unsubscribed from the newsletter");
+        logger.debug("Starting test: Already unsubscribed from the newsletter");
         unsubscribePage.clickSubmitButton();
 
         String expectedResult = "Вы отписались от рассылки";
