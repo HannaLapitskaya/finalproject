@@ -52,10 +52,13 @@ public class DriverManager {
     }
 
     public static void clickElementWhenClickableWithRetry(String xpath) {
-        try {
-            WaitUtils.waitForElementClickable(xpath).click();
-        } catch (StaleElementReferenceException e) {
-            WaitUtils.waitForElementClickable(xpath).click();
+        for (int i = 0; i < 3; i++) {
+            try {
+                WaitUtils.waitForElementClickable(xpath).click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                if (i == 2) throw e;
+            }
         }
     }
 
