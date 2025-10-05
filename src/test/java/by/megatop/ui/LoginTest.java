@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static by.megatop.ui.utils.LoginInfoUtils.generatePassword;
+import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForUi;
+
 @DisplayName("UI login functionality tests")
 public class LoginTest extends BaseTest {
 
@@ -93,11 +96,11 @@ public class LoginTest extends BaseTest {
     public void shouldShowErrorMessageWhenInvalidCredentialsAreUsed() {
         logger.debug("Starting test: Verify error message when invalid credentials are used for login");
 
-        loginPage.sendKeysInputPhone("250000000");
-        loginPage.sendKeysInputPassword("213123123123123123");
+        loginPage.sendKeysInputPhone(generatePhoneNumberForUi());
+        loginPage.sendKeysInputPassword(generatePassword());
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Вы ввели неверный номер телефона и/или пароль";
+        String expectedResult = "Введите корректно номер телефона";
         String actualResult = loginPage.getErrorInvalidCredentialsText();
 
         Assertions.assertEquals(expectedResult, actualResult);
