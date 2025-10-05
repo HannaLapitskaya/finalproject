@@ -11,7 +11,7 @@ public class BasePage {
     private static final String URL = "https://megatop.by/";
     private static final String BUTTON_ACCEPT_CITY_BY_LOCATION = "//button[@class='btn-gray v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default' and contains(.//text(), 'Да')]";
     private static final String BUTTON_ACCEPT_COOKIES = "//button[@class='btn-black ml-3 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default']";
-    private static final String BUTTON_WOMAN_CATEGORY = "//a[contains(text(), 'Женщины')]";
+    private static final String BUTTON_WOMAN_CATEGORY = "(//a[@class='main__btn text-uppercase white--text text-center mr-12'])[1]";
 
     public BasePage() {
 
@@ -37,7 +37,7 @@ public class BasePage {
 
     public void clickWomanCategory() {
         logger.debug("Clicking on 'Woman' category button");
-        DriverManager.clickElementWhenClickable(BUTTON_WOMAN_CATEGORY);
+        DriverManager.clickElementWhenClickableWithRetry(BUTTON_WOMAN_CATEGORY);
         logger.info("Woman category clicked");
     }
 }

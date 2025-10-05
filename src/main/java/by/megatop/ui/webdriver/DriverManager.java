@@ -2,6 +2,7 @@ package by.megatop.ui.webdriver;
 
 import by.megatop.ui.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -48,6 +49,14 @@ public class DriverManager {
 
     public static void clickElementWhenClickable(String xpath) {
         WaitUtils.waitForElementClickable(xpath).click();
+    }
+
+    public static void clickElementWhenClickableWithRetry(String xpath) {
+        try {
+            WaitUtils.waitForElementClickable(xpath).click();
+        } catch (StaleElementReferenceException e) {
+            WaitUtils.waitForElementClickable(xpath).click();
+        }
     }
 
     public static void sendKeys(String xpath, String value) {

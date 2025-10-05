@@ -1,6 +1,5 @@
 package by.megatop.ui.pages;
 
-import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,9 +29,7 @@ public class UnsubscribePage {
 
     public void sendKeysEmailInput(String email) {
         logger.debug("Sending keys to email input");
-        WebElement emailInput = DriverManager.getDriver().findElement(By.xpath(INPUT_EMAIL));
-        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].removeAttribute('autocomplete');", emailInput);
-
+        DriverManager.getDriver().findElement(By.xpath(INPUT_EMAIL));
         DriverManager.sendKeys(INPUT_EMAIL, email);
         logger.info("Email entered: " + email);
     }

@@ -19,7 +19,6 @@ public class BaseTest {
         logger.info("HomePage object created");
 
         basePage.openSite();
-        WaitUtils.waitForPageToLoad();
         basePage.clickCityByLocation();
         basePage.clickAcceptCookiesButton();
         basePage.clickWomanCategory();
