@@ -24,11 +24,11 @@ public class LoginInfoUtils {
     }
 
 
-    public static String generatePhoneNumberForUi() {
-        return PHONE_BY_CODE + generatePhoneNumberForApi();
+    public static String generatePhoneNumberForAPI() {
+        return PHONE_BY_CODE + generatePhoneNumberForUI();
     }
 
-    public static String generatePhoneNumberForApi() {
+    public static String generatePhoneNumberForUI() {
         Supplier<Object> generateNumberOrLetter = () -> RANDOM.nextInt(10);
         String phoneRandomPart = generateString(PHONE_RANDOM_PART_LENGTH, generateNumberOrLetter);
         int phoneRandomCodeIndex = RANDOM.nextInt(PhoneOperatorCode.values().length);
@@ -51,7 +51,7 @@ public class LoginInfoUtils {
 
     public static void main(String[] args) {
         System.out.println(generatePassword());
-        System.out.println(generatePhoneNumberForUi());
-        System.out.println(generatePhoneNumberForApi());
+        System.out.println(generatePhoneNumberForAPI());
+        System.out.println(generatePhoneNumberForUI());
     }
 }

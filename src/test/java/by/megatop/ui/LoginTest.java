@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static by.megatop.ui.utils.LoginInfoUtils.generatePassword;
-import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForUi;
+import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForUI;
 
 @DisplayName("UI login functionality tests")
 public class LoginTest extends BaseTest {
@@ -96,7 +96,7 @@ public class LoginTest extends BaseTest {
     public void shouldShowErrorMessageWhenInvalidCredentialsAreUsed() {
         logger.debug("Starting test: Verify error message when invalid credentials are used for login");
 
-        loginPage.sendKeysInputPhone(generatePhoneNumberForUi());
+        loginPage.sendKeysInputPhone(generatePhoneNumberForUI());
         loginPage.sendKeysInputPassword(generatePassword());
         loginPage.clickButtonSubmitLogin();
 

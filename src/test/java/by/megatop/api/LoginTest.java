@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static by.megatop.ui.utils.LoginInfoUtils.generatePassword;
-import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForApi;
+import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForAPI;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -78,7 +78,7 @@ public class LoginTest {
     @DisplayName("Login with valid phone number and empty password should return 422 status cod")
     public void shouldReturn422StatusCodeWhenLoginWithValidPhoneAndEmptyPassword() {
         logger.debug("Starting test: Login with valid phone number and empty password should return 422 status cod");
-        service.doRequest(generatePhoneNumberForApi(), "");
+        service.doRequest(generatePhoneNumberForAPI(), "");
 
         String responseBody = service.getBody();
 
@@ -147,7 +147,7 @@ public class LoginTest {
     @DisplayName("Login with a phone number with more than 12 digits")
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingMoreThan12Digits() {
         logger.debug("Starting test: Login with a phone number with more than 12 digits");
-        service.doRequest(generatePhoneNumberForApi() + "123", generatePassword());
+        service.doRequest(generatePhoneNumberForAPI() + "123", generatePassword());
 
         int actualStatusCode = service.getStatusCode();
         String responseBody = service.getBody();
