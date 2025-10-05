@@ -2,7 +2,6 @@ package by.megatop.ui.webdriver;
 
 import by.megatop.ui.utils.WaitUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +13,7 @@ import static by.megatop.ui.utils.WaitUtils.waitForElementClickable;
 
 public class DriverManager {
 
-    private static final int DEFAULT_TIMEOUT = 5;
+    private static final int DEFAULT_TIMEOUT = 20;
     private static WebDriver driver;
 
     private DriverManager() {
