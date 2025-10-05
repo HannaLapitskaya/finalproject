@@ -21,6 +21,7 @@ public class BaseTest {
         basePage.openSite();
         basePage.clickCityByLocation();
         basePage.clickAcceptCookiesButton();
+        WaitUtils.waitForPageToLoad();
         basePage.clickWomanCategory();
     }
 
