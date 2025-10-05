@@ -1,6 +1,7 @@
 package by.megatop.ui;
 
 import by.megatop.ui.pages.BasePage;
+import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,7 @@ public class BaseTest {
         logger.info("HomePage object created");
 
         basePage.openSite();
+        WaitUtils.waitForPageToLoad();
         basePage.clickCityByLocation();
         basePage.clickAcceptCookiesButton();
         basePage.clickWomanCategory();

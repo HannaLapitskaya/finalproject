@@ -19,10 +19,10 @@ public class UnsubscribeTest {
         unsubscribePage = new UnsubscribePage();
         basePage = new BasePage();
 
+        WaitUtils.waitForPageToLoad();
         unsubscribePage.openUnsubscribePage();
         basePage.clickCityByLocation();
         basePage.clickAcceptCookiesButton();
-        WaitUtils.waitForPageToLoad();
     }
 
     @AfterEach
