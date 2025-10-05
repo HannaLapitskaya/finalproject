@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
+import static by.megatop.ui.utils.WaitUtils.waitForElementClickable;
+
 public class DriverManager {
 
     private static final int DEFAULT_TIMEOUT = 5;
@@ -48,16 +50,16 @@ public class DriverManager {
     }
 
     public static void clickElementWhenClickable(String xpath) {
-        WaitUtils.waitForElementClickable(xpath).click();
+        waitForElementClickable(xpath).click();
     }
 
     public static void clickElementWhenClickableWithRetry(String xpath) {
         for (int i = 0; i < 3; i++) {
             try {
-                WaitUtils.waitForElementClickable(xpath).click();
+                waitForElementClickable(xpath).click();
                 return;
-            } catch (StaleElementReferenceException e) {
-                if (i == 2) throw e;
+            } catch (Exception e) {
+                if (i == 2) throw new RuntimeException("Click failed after 3 attempts: " + xpath, e);
             }
         }
     }
