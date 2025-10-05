@@ -31,32 +31,29 @@ public class CartPage {
 
     public String getEmptyCartMessage() {
         logger.debug("Getting empty cart message");
-        return DriverManager.getTextFromElement(EMPTY_CART_MESSAGE);
+        return DriverManager.getTextFromElementWhenVisible(EMPTY_CART_MESSAGE);
     }
 
     public String getLoginPromptMessage() {
         logger.debug("Getting login prompt message");
-        WaitUtils.waitForElementClickable(LOGIN_PROMPT_MESSAGE);
-        return DriverManager.getTextFromElement(LOGIN_PROMPT_MESSAGE);
+        return DriverManager.getTextFromElementWhenVisible(LOGIN_PROMPT_MESSAGE);
     }
 
     public void clickAddFirstItemToCartIcon() {
         logger.debug("Selecting first item for adding to cart");
-        WaitUtils.waitForElementVisible(BUTTON_FIRST_ITEM_ADD_TO_CART);
-        DriverManager.clickElement(BUTTON_FIRST_ITEM_ADD_TO_CART);
+        DriverManager.clickElementWhenClickable(BUTTON_FIRST_ITEM_ADD_TO_CART);
         logger.info("First item selected for adding to cart");
     }
 
     public void clickItemSizeButton() {
         logger.debug("Clicking item size button");
-        WaitUtils.waitForElementVisible(BUTTON_ITEM_SIZE);
-        DriverManager.clickElement(BUTTON_ITEM_SIZE);
+        DriverManager.clickElementWhenClickable(BUTTON_ITEM_SIZE);
         logger.info("Item size selected");
     }
 
     public void clickAddToCartConfirmButton() {
         logger.info("Confirming add to cart action");
-        DriverManager.clickElement((BUTTON_CONFIRM_ADD_TO_CART));
+        DriverManager.clickElementWhenClickable((BUTTON_CONFIRM_ADD_TO_CART));
         logger.info("Add to cart confirmed");
     }
 
@@ -82,13 +79,12 @@ public class CartPage {
 
     public void clickIncreaseItemQuantityButton() {
         logger.debug("Increasing item quantity");
-        WaitUtils.waitForElementVisible(BUTTON_INCREASE_QUANTITY);
-        DriverManager.clickElement(BUTTON_INCREASE_QUANTITY);
+        DriverManager.clickElementWhenClickable(BUTTON_INCREASE_QUANTITY);
         logger.info("Item quantity increased");
     }
 
     public String getCounterItemParamsText() {
         logger.debug("Getting current item quantity");
-        return DriverManager.getTextFromElement(ITEM_QUANTITY_DISPLAY);
+        return DriverManager.getTextFromElementWhenVisible(ITEM_QUANTITY_DISPLAY);
     }
 }

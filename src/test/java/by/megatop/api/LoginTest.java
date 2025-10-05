@@ -3,6 +3,8 @@ package by.megatop.api;
 import io.restassured.path.json.JsonPath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +16,24 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("API login functionality tests")
-public class LoginTest extends BaseTest {
+public class LoginTest {
 
     private static final Logger logger = LogManager.getLogger();
     private static final int UNPROCESSABLE_ENTITY_CODE = 422;
     private static final int INTERNAL_SERVER_ERROR_CODE = 500;
     private static final String ERROR_MESSAGE = "Вы ввели неверный номер телефона и/или пароль";
+
+    private LoginService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new LoginService();
+    }
+
+    @AfterEach
+    void tearDown() {
+        service = null;
+    }
 
     @Test
     @DisplayName("Login with incorrect data")

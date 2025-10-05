@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Home page functionality tests")
 public class HomeTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger();

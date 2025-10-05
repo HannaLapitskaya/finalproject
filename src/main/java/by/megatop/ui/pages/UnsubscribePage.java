@@ -39,26 +39,23 @@ public class UnsubscribePage {
 
     public void clickSubmitButton() {
         logger.debug("Clicking submit button");
-        WaitUtils.waitForElementClickable(BUTTON_SUBMIT);
-        DriverManager.clickElement(BUTTON_SUBMIT);
+        DriverManager.clickElementWhenClickable(BUTTON_SUBMIT);
         logger.info("Submit button clicked");
     }
 
     public String getEmailUnsubscribeNotificationText() {
         logger.debug("Getting email unsubscribe notification text");
-        WaitUtils.waitForElementVisible(TEXT_SUCCESS_MESSAGE);
-        return DriverManager.getTextFromElement(TEXT_SUCCESS_MESSAGE);
+        return DriverManager.getTextFromElementWhenVisible(TEXT_SUCCESS_MESSAGE);
     }
 
     public String getFormHeaderText() {
         logger.debug("Getting form header text");
-        WaitUtils.waitForElementVisible(EMAIL_FORM_HEADER);
-        return DriverManager.getTextFromElement(EMAIL_FORM_HEADER);
+        return DriverManager.getTextFromElementWhenVisible(EMAIL_FORM_HEADER);
     }
 
     public String getPlaceholderInputFieldText() {
         logger.debug("Getting placeholder input field text");
-        return DriverManager.getTextFromElement(PLACEHOLDER_INPUT_FIELD);
+        return DriverManager.getTextFromElementWhenVisible(PLACEHOLDER_INPUT_FIELD);
     }
 
     public String getSuccessfulUnsubscribeText() {

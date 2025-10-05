@@ -3,6 +3,7 @@ package by.megatop.ui.utils;
 import by.megatop.ui.webdriver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,12 +18,12 @@ public class WaitUtils {
         return new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(DEFAULT_TIMEOUT));
     }
 
-    public static void waitForElementVisible(String xpath) {
-        getWait().until(ExpectedConditions.visibilityOfElementLocated((By.xpath(xpath))));
+    public static WebElement waitForElementVisible(String xpath) {
+        return getWait().until(ExpectedConditions.visibilityOfElementLocated((By.xpath(xpath))));
     }
 
-    public static void waitForElementClickable(String xpath) {
-        getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    public static WebElement waitForElementClickable(String xpath) {
+        return getWait().until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
     }
 
     public static void waitForPageToLoad() {

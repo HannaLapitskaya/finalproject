@@ -54,8 +54,7 @@ public class SearchPage {
 
     public String getSearchPageHeaderText() {
         logger.debug("Getting text from search page header");
-        WaitUtils.waitForElementVisible(HEADER_SEARCH_PAGE);
-        return DriverManager.getTextFromElement(HEADER_SEARCH_PAGE);
+        return DriverManager.getTextFromElementWhenVisible(HEADER_SEARCH_PAGE);
     }
 
     public String getCounterText() {

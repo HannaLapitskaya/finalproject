@@ -25,22 +25,19 @@ public class BasePage {
 
     public void clickCityByLocation() {
         logger.debug("Clicking on 'Accept city' button");
-        WaitUtils.waitForElementClickable(BUTTON_ACCEPT_CITY_BY_LOCATION);
-        DriverManager.clickElement(BUTTON_ACCEPT_CITY_BY_LOCATION);
+        DriverManager.clickElementWhenClickable(BUTTON_ACCEPT_CITY_BY_LOCATION);
         logger.info("City accepted by location successfully");
     }
 
     public void clickAcceptCookiesButton() {
         logger.debug("Clicking on 'Accept cookies' button");
-        DriverManager.clickElement(BUTTON_ACCEPT_COOKIES);
+        DriverManager.clickElementWhenClickable(BUTTON_ACCEPT_COOKIES);
         logger.info("Cookies accepted");
     }
 
     public void clickWomanCategory() {
         logger.debug("Clicking on 'Woman' category button");
-        WaitUtils.waitForElementVisible(BUTTON_WOMAN_CATEGORY);
-        WaitUtils.waitForElementClickable(BUTTON_WOMAN_CATEGORY);
-        DriverManager.clickElement(BUTTON_WOMAN_CATEGORY);
+        DriverManager.clickElementWhenClickable(BUTTON_WOMAN_CATEGORY);
         logger.info("Woman category clicked");
     }
 }

@@ -1,5 +1,6 @@
 package by.megatop.ui.webdriver;
 
+import by.megatop.ui.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,12 +46,20 @@ public class DriverManager {
         findElement(xpath).click();
     }
 
+    public static void clickElementWhenClickable(String xpath) {
+        WaitUtils.waitForElementClickable(xpath).click();
+    }
+
     public static void sendKeys(String xpath, String value) {
         findElement(xpath).sendKeys(value);
     }
 
     public static String getTextFromElement(String xpath) {
         return findElement(xpath).getText();
+    }
+
+    public static String getTextFromElementWhenVisible(String xpath) {
+        return WaitUtils.waitForElementVisible(xpath).getText();
     }
 
     public static String getAttributeFromElement(String xpath, String attribute) {
