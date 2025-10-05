@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
+import static by.megatop.ui.utils.EmailUtils.generateRandomGmail;
+
 public class UnsubscribeTest {
 
     private static final Logger logger = LogManager.getLogger();
@@ -34,7 +36,7 @@ public class UnsubscribeTest {
     @DisplayName("Successful unsubscribe with valid email format")
     public void shouldSendEmailWhenValidEmailProvided() {
         logger.debug("Starting test: Successful unsubscribe with valid email format");
-        unsubscribePage.sendKeysEmailInput("test@test.com");
+        unsubscribePage.sendKeysEmailInput(generateRandomGmail());
         unsubscribePage.clickSubmitButton();
 
         String expectedResult = "Вам на почту выслано письмо для отписки от рассылки";

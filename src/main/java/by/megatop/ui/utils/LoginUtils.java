@@ -3,7 +3,7 @@ package by.megatop.ui.utils;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class LoginInfoUtils {
+public class LoginUtils {
 
     public static final int PASSWORD_LENGTH = 10;
     public static final int PHONE_RANDOM_PART_LENGTH = 7;
@@ -47,11 +47,5 @@ public class LoginInfoUtils {
         }
 
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(generatePassword());
-        System.out.println(generatePhoneNumberForAPI());
-        System.out.println(generatePhoneNumberForUI());
     }
 }

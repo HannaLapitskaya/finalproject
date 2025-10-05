@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static by.megatop.ui.utils.LoginInfoUtils.generatePassword;
-import static by.megatop.ui.utils.LoginInfoUtils.generatePhoneNumberForUI;
+import static by.megatop.ui.utils.LoginUtils.generatePassword;
+import static by.megatop.ui.utils.LoginUtils.generatePhoneNumberForUI;
 
 @DisplayName("UI login functionality tests")
 public class LoginTest extends BaseTest {

@@ -1,6 +1,6 @@
 package by.megatop.api;
 
-import by.megatop.ui.utils.LoginInfoUtils;
+import by.megatop.ui.utils.LoginUtils;
 import io.restassured.path.json.JsonPath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +37,7 @@ public class GiftCertificateTest {
     @DisplayName("Valid phone number")
     public void SendConfirmationCodeWithValidPhone() {
         logger.debug("Valid phone number test");
-        service.doRequest(LoginInfoUtils.generatePhoneNumberForAPI());
+        service.doRequest(LoginUtils.generatePhoneNumberForAPI());
 
         String responseBody = service.getBody();
         JsonPath jsonPath = new JsonPath(responseBody);
@@ -72,7 +72,7 @@ public class GiftCertificateTest {
     @DisplayName("Long phone number - more than 12 digits")
     public void PhoneNumberMoreThan12Digits() {
         logger.debug("Empty phone number test");
-        service.doRequest(LoginInfoUtils.generatePhoneNumberForAPI() + 345);
+        service.doRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
 
         String responseBody = service.getBody();
         JsonPath jsonPath = new JsonPath(responseBody);

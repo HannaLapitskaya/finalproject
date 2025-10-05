@@ -31,7 +31,7 @@ public class UnsubscribePage {
         logger.debug("Sending keys to email input");
         DriverManager.getDriver().findElement(By.xpath(INPUT_EMAIL));
         DriverManager.sendKeys(INPUT_EMAIL, email);
-        logger.info("Email entered: " + email);
+        logger.info("Email entered");
     }
 
     public void clickSubmitButton() {
