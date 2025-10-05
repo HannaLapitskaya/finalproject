@@ -41,13 +41,11 @@ public class LoginTest {
         logger.debug("Starting test: Login with incorrect data");
         service.doRequest();
 
-        int actualStatusCode = service.getStatusCode();
-
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(service.getBody());
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(responseBody).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
                 () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE)
@@ -62,7 +60,7 @@ public class LoginTest {
         service.doRequest("", "");
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(service.getBody());
+        JsonPath jsonPath = service.getJsonPath();
 
         int actualStatusCode = service.getStatusCode();
 
@@ -82,7 +80,7 @@ public class LoginTest {
 
         String responseBody = service.getBody();
 
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -104,7 +102,7 @@ public class LoginTest {
         int actualStatusCode = service.getStatusCode();
         String responseBody = service.getBody();
 
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -127,7 +125,7 @@ public class LoginTest {
         int actualStatusCode = service.getStatusCode();
         String responseBody = service.getBody();
 
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -152,7 +150,7 @@ public class LoginTest {
         int actualStatusCode = service.getStatusCode();
         String responseBody = service.getBody();
 
-        JsonPath jsonPath = new JsonPath(service.getBody());
+        JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(

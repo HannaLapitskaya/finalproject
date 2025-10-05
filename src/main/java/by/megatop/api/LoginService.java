@@ -1,5 +1,6 @@
 package by.megatop.api;
 
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -54,5 +55,9 @@ public class LoginService {
         headers.put("accept", "application/json, text/plain, */*");
 
         return headers;
+    }
+
+    public JsonPath getJsonPath() {
+        return new JsonPath(getBody());
     }
 }

@@ -40,7 +40,7 @@ public class GiftCertificateTest {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI());
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(OK_CODE),
@@ -57,7 +57,7 @@ public class GiftCertificateTest {
         service.doRequest("375255");
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
@@ -75,7 +75,7 @@ public class GiftCertificateTest {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
@@ -93,7 +93,7 @@ public class GiftCertificateTest {
         service.doRequest("");
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
@@ -111,7 +111,7 @@ public class GiftCertificateTest {
         service.doRequest("рыпвао");
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
@@ -129,7 +129,7 @@ public class GiftCertificateTest {
         service.doRequest(null);
 
         String responseBody = service.getBody();
-        JsonPath jsonPath = new JsonPath(responseBody);
+        JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),

@@ -1,5 +1,6 @@
 package by.megatop.api;
 
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
@@ -39,5 +40,9 @@ public class GiftCertificateService {
         headers.put("Accept", "application/json, text/plain, */*");
 
         return headers;
+    }
+
+    public JsonPath getJsonPath() {
+        return new JsonPath(getBody());
     }
 }
