@@ -47,12 +47,12 @@ public class UnsubscribePage {
 
     public String getFormHeaderText() {
         logger.debug("Getting form header text");
-        return DriverManager.getTextFromElementWhenVisible(EMAIL_FORM_HEADER);
+        return DriverManager.getTextFromElementWhenVisibleWithRetry(EMAIL_FORM_HEADER);
     }
 
     public String getPlaceholderInputFieldText() {
         logger.debug("Getting placeholder input field text");
-        return DriverManager.getTextFromElementWhenVisible(PLACEHOLDER_INPUT_FIELD);
+        return DriverManager.getTextFromElementWhenVisibleWithRetry(PLACEHOLDER_INPUT_FIELD);
     }
 
     public String getSuccessfulUnsubscribeText() {

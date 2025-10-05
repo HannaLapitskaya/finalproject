@@ -2,6 +2,7 @@ package by.megatop.ui.webdriver;
 
 import by.megatop.ui.utils.WaitUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 import static by.megatop.ui.utils.WaitUtils.waitForElementClickable;
+import static by.megatop.ui.utils.WaitUtils.waitForElementVisible;
 
 public class DriverManager {
 
@@ -72,7 +74,18 @@ public class DriverManager {
     }
 
     public static String getTextFromElementWhenVisible(String xpath) {
-        return WaitUtils.waitForElementVisible(xpath).getText();
+        return waitForElementVisible(xpath).getText();
+    }
+
+    public static String getTextFromElementWhenVisibleWithRetry(String xpath) {
+        for (int i = 0; i < 3; i++) {
+            try {
+                return waitForElementVisible(xpath).getText();
+            } catch (StaleElementReferenceException e) {
+                if (i == 2) throw e;
+            }
+        }
+        return null;
     }
 
     public static String getAttributeFromElement(String xpath, String attribute) {

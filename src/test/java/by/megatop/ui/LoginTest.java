@@ -100,7 +100,7 @@ public class LoginTest extends BaseTest {
         loginPage.sendKeysInputPassword(generatePassword());
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Введите корректно номер телефона";
+        String expectedResult = "Вы ввели неверный номер телефона и/или пароль";
         String actualResult = loginPage.getErrorInvalidCredentialsText();
 
         Assertions.assertEquals(expectedResult, actualResult);

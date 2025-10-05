@@ -60,7 +60,7 @@ public class UnsubscribeTest {
 
     @Test
     @DisplayName("Email input field placeholder presence")
-    public void shouldDisplayPlaceholder_WhenInputRendered() {
+    public void shouldDisplayPlaceholderWhenInputRendered() {
         logger.debug("Starting test: Email input field placeholder presence");
 
         String expectedResult = "Введите свой e-mail";
@@ -72,7 +72,7 @@ public class UnsubscribeTest {
 
     @Test
     @DisplayName("Already unsubscribed from the newsletter")
-    public void shouldConfirmUnsubscription_WhenNoEmailProvided() {
+    public void shouldConfirmUnsubscriptionWhenNoEmailProvided() {
         logger.debug("Starting test: Already unsubscribed from the newsletter");
         unsubscribePage.clickSubmitButton();
 
