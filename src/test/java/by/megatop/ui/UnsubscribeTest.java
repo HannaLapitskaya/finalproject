@@ -35,7 +35,6 @@ public class UnsubscribeTest {
     @Test
     @DisplayName("Successful unsubscribe with valid email format")
     public void shouldSendEmailWhenValidEmailProvided() {
-        logger.debug("Starting test: Successful unsubscribe with valid email format");
         unsubscribePage.sendKeysEmailInput(generateRandomGmail());
         unsubscribePage.clickSubmitButton();
 
@@ -43,43 +42,34 @@ public class UnsubscribeTest {
         String actualResult = unsubscribePage.getEmailUnsubscribeNotificationText();
 
         Assertions.assertEquals(expectedResult, actualResult);
-        logger.info("Test 'Successful unsubscribe with valid email format' passed successfully");
     }
 
     @Test
     @DisplayName("Email input form header presence")
     public void shouldShowHeaderWhenPageOpened() {
-        logger.debug("Starting test: Email input form header presence");
-
         String expectedResult = "Отписаться от email рассылки";
         String actualResult = unsubscribePage.getFormHeaderText();
 
         Assertions.assertEquals(expectedResult, actualResult);
-        logger.info("Test 'Email input form header presence' passed successfully");
     }
 
     @Test
     @DisplayName("Email input field placeholder presence")
     public void shouldDisplayPlaceholderWhenInputRendered() {
-        logger.debug("Starting test: Email input field placeholder presence");
-
         String expectedResult = "Введите свой e-mail";
         String actualResult = unsubscribePage.getPlaceholderInputFieldText();
 
         Assertions.assertEquals(expectedResult, actualResult);
-        logger.info("Test 'Email input field placeholder presence' passed successfully");
     }
 
     @Test
     @DisplayName("Already unsubscribed from the newsletter")
     public void shouldConfirmUnsubscriptionWhenNoEmailProvided() {
-        logger.debug("Starting test: Already unsubscribed from the newsletter");
         unsubscribePage.clickSubmitButton();
 
         String expectedResult = "Вы отписались от рассылки";
         String actualResult = unsubscribePage.getSuccessfulUnsubscribeText();
 
         Assertions.assertEquals(expectedResult, actualResult);
-        logger.info("Test 'Already unsubscribed from the newsletter' passed successfully");
     }
 }
