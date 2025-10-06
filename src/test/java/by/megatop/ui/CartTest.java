@@ -1,8 +1,7 @@
 package by.megatop.ui;
 
-import by.megatop.ui.pages.CartPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.megatop.ui.pages.cart.CartExpectedMessages;
+import by.megatop.ui.pages.cart.CartPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,10 +21,8 @@ public class CartTest extends BaseTest {
     @Test
     @DisplayName("Verify empty cart message is displayed correctly")
     public void shouldDisplayEmptyCartMessageIfCartIsEmpty() {
-        String expectedResult = "Ваша корзина пуста";
-        String actualResult = cartPage.getEmptyCartMessage();
 
-        Assertions.assertEquals(expectedResult, actualResult, "Empty cart message should be displayed when cart is empty");
+        Assertions.assertEquals(CartExpectedMessages.EMPTY_CART_MESSAGE, cartPage.getEmptyCartMessage(), "Empty cart message should be displayed when cart is empty");
     }
 
     @Test
