@@ -43,12 +43,11 @@ public class GiftCertificateTest {
     public void SendConfirmationCodeWithValidPhone() {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI());
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(OK_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).contains("Код подтверждения отправлен на номер")
         );
     }
@@ -61,12 +60,11 @@ public class GiftCertificateTest {
     public void PhoneNumberLessThan12Digits() {
         service.doRequest("375255");
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
         );
@@ -80,12 +78,11 @@ public class GiftCertificateTest {
     public void PhoneNumberMoreThan12Digits() {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
         );
@@ -99,12 +96,11 @@ public class GiftCertificateTest {
     public void emptyPhoneNumber() {
         service.doRequest("");
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo("Phone обязательное поле")
         );
@@ -118,12 +114,11 @@ public class GiftCertificateTest {
     public void nonDigitPhoneNumber() {
         service.doRequest("рыпвао");
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
         );
@@ -137,12 +132,11 @@ public class GiftCertificateTest {
     public void nullPhoneNumber() {
         service.doRequest(null);
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
         );

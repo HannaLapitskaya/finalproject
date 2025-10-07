@@ -1,5 +1,6 @@
 package by.megatop.ui.pages.unsubscribe;
 
+import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,7 @@ public class UnsubscribePage {
     public void openUnsubscribePage() {
         logger.debug("Opening unsubscribe page");
         DriverManager.getDriver().get(UnsubscribeLocators.UNSUBSCRIBE_PAGE_URL);
+        WaitUtils.waitForPageToLoad();
         logger.info("Unsubscribe page opened");
     }
 

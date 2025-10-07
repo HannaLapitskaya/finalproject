@@ -44,12 +44,11 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithIncorrectData() {
         service.doRequest();
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
                 () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE)
         );
@@ -63,14 +62,11 @@ public class LoginTest {
     public void shouldReturn500StatusCodeWhenLoginWithEmptyEmailAndEmptyPassword() {
         service.doRequest("", "");
 
-        String responseBody = service.getBody();
         JsonPath jsonPath = service.getJsonPath();
 
-        int actualStatusCode = service.getStatusCode();
-
         assertAll(
-                () -> assertThat(actualStatusCode).isEqualTo(INTERNAL_SERVER_ERROR_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getStatusCode()).isEqualTo(INTERNAL_SERVER_ERROR_CODE),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase("Server Error")
         );
     }
@@ -83,13 +79,11 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWhenLoginWithValidPhoneAndEmptyPassword() {
         service.doRequest(generatePhoneNumberForAPI(), "");
 
-        String responseBody = service.getBody();
-
         JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
                 () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
@@ -105,15 +99,12 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithNonNumericPhone() {
         service.doRequest(generatePassword(), "");
 
-        int actualStatusCode = service.getStatusCode();
-        String responseBody = service.getBody();
-
         JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
                 () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
@@ -129,15 +120,12 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingFewerThan12Digits() {
         service.doRequest("37525", generatePassword());
 
-        int actualStatusCode = service.getStatusCode();
-        String responseBody = service.getBody();
-
         JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
                 () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
@@ -155,17 +143,14 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingMoreThan12Digits() {
         service.doRequest(generatePhoneNumberForAPI() + "123", generatePassword());
 
-        int actualStatusCode = service.getStatusCode();
-        String responseBody = service.getBody();
-
         JsonPath jsonPath = service.getJsonPath();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(actualStatusCode).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE),
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
-                () -> assertThat(responseBody).isNotNull().isNotBlank(),
+                () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getMap("errors")).asString().contains("phone"),
                 () -> assertThat(phoneErrors).extracting(List::isEmpty).isEqualTo(false)
         );

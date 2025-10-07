@@ -28,7 +28,6 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("CT-01")
     public void shouldDisplayEmptyCartMessageIfCartIsEmpty() {
-
         Assertions.assertEquals(CartExpectedMessages.EMPTY_CART_MESSAGE, cartPage.getEmptyCartMessage(), "Empty cart message should be displayed when cart is empty");
     }
 
@@ -38,9 +37,7 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("CT-02")
     public void shouldDisplayLoginPromptIfUserIsUnauthorized() {
-        String expectedResult = "Войдите в систему, чтобы увидеть корзину покупок";
-
-        Assertions.assertEquals(expectedResult, cartPage.getLoginPromptMessage(), "Login prompt should be displayed when user is not authorized");
+        Assertions.assertEquals(CartExpectedMessages.UNAUTHORIZED_CART_MESSAGE, cartPage.getLoginPromptMessage(), "Login prompt should be displayed when user is not authorized");
     }
 
     @Test
@@ -51,9 +48,7 @@ public class CartTest extends BaseTest {
     public void shouldUpdateCartCounterWhenAddingItem() {
         cartPage.addItemToCart();
 
-        String expectedResult = "В корзине 1 товар";
-
-        Assertions.assertEquals(expectedResult, cartPage.getCounterItemsText());
+        Assertions.assertEquals(CartExpectedMessages.SINGLE_ITEM_CART_MESSAGE, cartPage.getCounterItemsText());
     }
 
     @Test
@@ -65,8 +60,6 @@ public class CartTest extends BaseTest {
         cartPage.addItemToCart();
         cartPage.clickIncreaseItemQuantityButton();
 
-        String expectedResult = "1 шт.";
-
-        Assertions.assertEquals(expectedResult, cartPage.getCounterItemParamsText());
+        Assertions.assertEquals(CartExpectedMessages.SINGLE_QUANTITY_TEXT, cartPage.getCounterItemParamsText());
     }
 }

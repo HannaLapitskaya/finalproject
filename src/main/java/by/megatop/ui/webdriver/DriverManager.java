@@ -16,6 +16,7 @@ public class DriverManager {
 
     private static final int DEFAULT_TIMEOUT = 20;
     private static WebDriver driver;
+    private static final int MAX_RETRY_ATTEMPTS = 4;
 
     private DriverManager() {
 
@@ -54,7 +55,7 @@ public class DriverManager {
     }
 
     public static void clickElementWhenClickableWithRetry(String xpath) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < MAX_RETRY_ATTEMPTS; i++) {
             try {
                 waitForElementClickable(xpath).click();
                 return;
@@ -77,7 +78,7 @@ public class DriverManager {
     }
 
     public static String getTextFromElementWhenVisibleWithRetry(String xpath) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < MAX_RETRY_ATTEMPTS; i++) {
             try {
                 return waitForElementVisible(xpath).getText();
             } catch (StaleElementReferenceException e) {

@@ -1,5 +1,6 @@
 package by.megatop.ui;
 
+import by.megatop.ui.pages.login.LoginExpectedMessages;
 import by.megatop.ui.pages.login.LoginPage;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
@@ -54,9 +55,7 @@ public class LoginTest extends BaseTest {
     public void shouldShowValidationErrorWhenPhoneNumberIsEmpty() {
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Телефон обязательное поле";
-
-        Assertions.assertEquals(expectedResult, loginPage.getErrorEmptyPhoneText());
+        Assertions.assertEquals(LoginExpectedMessages.PHONE_REQUIRED_ERROR, loginPage.getErrorEmptyPhoneText());
     }
 
     @Test
@@ -68,9 +67,7 @@ public class LoginTest extends BaseTest {
         loginPage.sendKeysInputPhone("12");
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Введите телефон полностью";
-
-        Assertions.assertEquals(expectedResult, loginPage.getErrorIncompletePhoneText());
+        Assertions.assertEquals(LoginExpectedMessages.INCOMPLETE_PHONE_ERROR, loginPage.getErrorIncompletePhoneText());
     }
 
     @Test
@@ -82,9 +79,7 @@ public class LoginTest extends BaseTest {
         loginPage.sendKeysInputPhone("110000000");
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Введите корректно номер телефона";
-
-        Assertions.assertEquals(expectedResult, loginPage.getErrorInvalidPhoneOperator());
+        Assertions.assertEquals(LoginExpectedMessages.INVALID_PHONE_FORMAT_ERROR, loginPage.getErrorInvalidPhoneOperator());
     }
 
     @Test
@@ -97,8 +92,6 @@ public class LoginTest extends BaseTest {
         loginPage.sendKeysInputPassword(generatePassword());
         loginPage.clickButtonSubmitLogin();
 
-        String expectedResult = "Вы ввели неверный номер телефона и/или пароль";
-
-        Assertions.assertEquals(expectedResult, loginPage.getErrorInvalidCredentialsText());
+        Assertions.assertEquals(LoginExpectedMessages.INVALID_CREDENTIALS_ERROR, loginPage.getErrorInvalidCredentialsText());
     }
 }

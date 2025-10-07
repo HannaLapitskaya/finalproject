@@ -1,9 +1,11 @@
 package by.megatop.ui;
 
 import by.megatop.ui.pages.cart.CartPage;
+import by.megatop.ui.pages.home.HomeExpectedMessages;
 import by.megatop.ui.pages.home.HomePage;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,17 +15,20 @@ import org.junit.jupiter.api.Test;
 @DisplayName("UI home functionality tests")
 public class HomeTest extends BaseTest {
 
+    private HomePage homePage;
+
+    @BeforeEach
+    public void openCartPage() {
+        homePage = new HomePage();
+    }
+
     @Test
     @DisplayName("The presence of a contact phone number")
     @Description("Test verifies that contact phone number is displayed on home page")
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-01")
     public void contactPhoneNumberShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "7976";
-
-        Assertions.assertEquals(expectedResult, homePage.getContactPhoneText());
+        Assertions.assertEquals(HomeExpectedMessages.CONTACT_PHONE_NUMBER, homePage.getContactPhoneText());
     }
 
     @Test
@@ -32,11 +37,7 @@ public class HomeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-02")
     public void designInKoreaCategoryHeaderShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "Design in Korea";
-
-        Assertions.assertEquals(expectedResult, homePage.getHeaderDesignInKoreaCategoryText());
+        Assertions.assertEquals(HomeExpectedMessages.DESIGN_IN_KOREA_HEADER, homePage.getHeaderDesignInKoreaCategoryText());
     }
 
     @Test
@@ -45,11 +46,7 @@ public class HomeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-03")
     public void trendZoneCategoryHeaderShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "Зона трендов";
-
-        Assertions.assertEquals(expectedResult, homePage.getHeaderWomenTrendZoneCategoryText());
+        Assertions.assertEquals(HomeExpectedMessages.TREND_ZONE_HEADER, homePage.getHeaderWomenTrendZoneCategoryText());
     }
 
     @Test
@@ -58,11 +55,7 @@ public class HomeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-04")
     public void accessoriesCategoryHeaderShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "Аксессуары";
-
-        Assertions.assertEquals(expectedResult, homePage.getHeaderAccessoriesCategoryText());
+        Assertions.assertEquals(HomeExpectedMessages.ACCESSORIES_HEADER, homePage.getHeaderAccessoriesCategoryText());
     }
 
     @Test
@@ -71,11 +64,7 @@ public class HomeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-05")
     public void womenShoesCategoryHeaderShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "Обувь";
-
-        Assertions.assertEquals(expectedResult, homePage.getHeaderWomenShoesCategoryText());
+        Assertions.assertEquals(HomeExpectedMessages.WOMEN_SHOES_HEADER, homePage.getHeaderWomenShoesCategoryText());
     }
 
     @Test
@@ -84,10 +73,6 @@ public class HomeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("HM-06")
     public void haberdasheryCategoryHeaderShouldBeDisplayed() {
-        HomePage homePage = new HomePage();
-
-        String expectedResult = "Галантерея";
-
-        Assertions.assertEquals(expectedResult, homePage.getHeaderHaberdasheryCategoryText());
+        Assertions.assertEquals(HomeExpectedMessages.HABERDASHERY_HEADER, homePage.getHeaderHaberdasheryCategoryText());
     }
 }

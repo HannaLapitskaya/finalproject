@@ -1,5 +1,6 @@
 package by.megatop.ui;
 
+import by.megatop.ui.pages.search.SearchExpectedMessages;
 import by.megatop.ui.pages.search.SearchPage;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
@@ -33,9 +34,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("Лоферы");
         searchPage.startSearch();
 
-        String actualResult = "ПОИСК ПО ЗАПРОСУ 'ЛОФЕРЫ'";
-
-        Assertions.assertEquals(actualResult, searchPage.getSearchPageHeaderText());
+        Assertions.assertEquals(SearchExpectedMessages.SEARCH_RESULTS_HEADER, searchPage.getSearchPageHeaderText());
     }
 
     @Test
@@ -47,9 +46,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("полянка");
         searchPage.startSearch();
 
-        String actualResult = "0";
-
-        Assertions.assertEquals(actualResult, searchPage.getCounterText());
+        Assertions.assertEquals(SearchExpectedMessages.ZERO_RESULTS_COUNT, searchPage.getCounterText());
     }
 
     @Test
@@ -61,9 +58,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("шнурки");
         searchPage.startSearch();
 
-        String actualResult = "29 товаров";
-
-        Assertions.assertEquals(actualResult, searchPage.getCounterText());
+        Assertions.assertEquals(SearchExpectedMessages.MULTIPLE_RESULTS_COUNT, searchPage.getCounterText());
     }
 
     @Test
@@ -75,9 +70,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("Крем-краска WiMi");
         searchPage.startSearch();
 
-        String actualResult = "1 товар";
-
-        Assertions.assertEquals(actualResult, searchPage.getCounterText());
+        Assertions.assertEquals(SearchExpectedMessages.SINGLE_RESULT_COUNT, searchPage.getCounterText());
     }
 
     @Test
@@ -89,9 +82,7 @@ public class SearchTest extends BaseTest {
         searchPage.sendKeysSearch("1403000818");
         searchPage.startSearch();
 
-        String actualResult = "1 товар";
-
-        Assertions.assertEquals(actualResult, searchPage.getCounterText());
+        Assertions.assertEquals(SearchExpectedMessages.SINGLE_RESULT_COUNT, searchPage.getCounterText());
     }
 
     @Test
@@ -121,6 +112,6 @@ public class SearchTest extends BaseTest {
 
         List<String> results = searchPage.getSearchResultItemsTitleText();
 
-        Assertions.assertEquals("Кеды", results.getFirst());
+        Assertions.assertEquals(SearchExpectedMessages.FIRST_RESULT_TITLE, results.getFirst());
     }
 }

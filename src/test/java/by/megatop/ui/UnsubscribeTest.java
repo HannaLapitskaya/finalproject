@@ -1,6 +1,7 @@
 package by.megatop.ui;
 
 import by.megatop.ui.pages.base.BasePage;
+import by.megatop.ui.pages.unsubscribe.UnsubscribeExpectedMessages;
 import by.megatop.ui.pages.unsubscribe.UnsubscribePage;
 import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
@@ -24,7 +25,6 @@ public class UnsubscribeTest {
         basePage = new BasePage();
 
         unsubscribePage.openUnsubscribePage();
-        WaitUtils.waitForPageToLoad();
         basePage.clickCityByLocation();
         basePage.clickAcceptCookiesButton();
     }
@@ -43,9 +43,7 @@ public class UnsubscribeTest {
         unsubscribePage.sendKeysEmailInput(generateRandomGmail());
         unsubscribePage.clickSubmitButton();
 
-        String expectedResult = "Вам на почту выслано письмо для отписки от рассылки";
-
-        Assertions.assertEquals(expectedResult, unsubscribePage.getEmailUnsubscribeNotificationText());
+        Assertions.assertEquals(UnsubscribeExpectedMessages.EMAIL_SENT_CONFIRMATION, unsubscribePage.getEmailUnsubscribeNotificationText());
     }
 
     @Test
@@ -54,9 +52,7 @@ public class UnsubscribeTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("UNS-02")
     public void shouldShowHeaderWhenPageOpened() {
-        String expectedResult = "Отписаться от email рассылки";
-
-        Assertions.assertEquals(expectedResult, unsubscribePage.getFormHeaderText());
+        Assertions.assertEquals(UnsubscribeExpectedMessages.UNSUBSCRIBE_FORM_HEADER, unsubscribePage.getFormHeaderText());
     }
 
     @Test
@@ -65,9 +61,8 @@ public class UnsubscribeTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("UNS-03")
     public void shouldDisplayPlaceholderWhenInputRendered() {
-        String expectedResult = "Введите свой e-mail";
 
-        Assertions.assertEquals(expectedResult, unsubscribePage.getPlaceholderInputFieldText());
+        Assertions.assertEquals(UnsubscribeExpectedMessages.EMAIL_PLACEHOLDER_TEXT, unsubscribePage.getPlaceholderInputFieldText());
     }
 
     @Test
@@ -78,8 +73,6 @@ public class UnsubscribeTest {
     public void shouldConfirmUnsubscriptionWhenNoEmailProvided() {
         unsubscribePage.clickSubmitButton();
 
-        String expectedResult = "Вы отписались от рассылки";
-
-        Assertions.assertEquals(expectedResult, unsubscribePage.getSuccessfulUnsubscribeText());
+        Assertions.assertEquals(UnsubscribeExpectedMessages.UNSUBSCRIBE_SUCCESS_MESSAGE, unsubscribePage.getSuccessfulUnsubscribeText());
     }
 }

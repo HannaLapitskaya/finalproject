@@ -9,5 +9,4 @@ public class UnsubscribeLocators {
     public static final String EMAIL_FORM_HEADER = "(//div[@class='d-flex flex-column']/div)[1]";
     public static final String PLACEHOLDER_INPUT_FIELD = "//div[@class='subscription__input-label']";
     public static final String UNSUBSCRIBE_CONFIRMATION_TEXT = "//div[@class='w-100 d-flex justify-center align-center']/div";
-
 }
