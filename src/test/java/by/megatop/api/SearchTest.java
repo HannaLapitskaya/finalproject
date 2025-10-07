@@ -1,5 +1,6 @@
 package by.megatop.api;
 
+import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+@Epic("API Testing")
+@Feature("Search Functionality")
+@Story("Product Search API")
+@DisplayName("API search functionality tests")
 public class SearchTest {
 
     private SearchService service;
@@ -25,6 +30,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return 200 status code")
+    @Description("Test verifies that search API returns 200 OK status code for successful request")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("SH-01")
     public void searchApiShouldReturn200StatusCode() {
         service.doRequest();
 
@@ -33,6 +41,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return correct response structure")
+    @Description("Test verifies that search API response contains non-empty categories and products lists")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SH-02")
     public void searchApiShouldReturnCorrectStructure() {
         service.doRequest();
 
@@ -46,6 +57,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return correct first product data")
+    @Description("Test verifies detailed product information for the first product in search results")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("SH-03")
     public void searchApiShouldReturnCorrectFirstProduct() {
         service.doRequest();
 
@@ -65,6 +79,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return correct product category")
+    @Description("Test verifies category information for products in search results")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-04")
     public void searchApiShouldReturnCorrectCategory() {
         service.doRequest();
 
@@ -78,6 +95,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return correct product links")
+    @Description("Test verifies that product links are correctly formatted in search results")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-05")
     public void searchApiShouldReturnCorrectLinks() {
         service.doRequest();
 
@@ -90,6 +110,9 @@ public class SearchTest {
 
     @Test
     @DisplayName("Search API should return correct second product")
+    @Description("Test verifies product information for the second product in search results")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-06")
     public void searchApiShouldReturnCorrectSecondProduct() {
         service.doRequest();
 
