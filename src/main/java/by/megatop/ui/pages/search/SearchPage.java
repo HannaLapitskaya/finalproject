@@ -1,4 +1,4 @@
-package by.megatop.ui.pages;
+package by.megatop.ui.pages.search;
 
 import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
@@ -16,11 +16,6 @@ import java.util.stream.Collectors;
 public class SearchPage {
 
     private static final Logger logger = LogManager.getLogger();
-    private static final String BUTTON_SEARCH = "//button[@class='px-0 btn-wrap v-btn v-btn--text theme--light v-size--default white--text']";
-    private static final String INPUT_SEARCH = "//input[@ autofocus ='autofocus']";
-    private static final String HEADER_SEARCH_PAGE = "//h1[@class='catalog__title text-uppercase']";
-    private static final String COUNTER = "//span[@class='ml-4 my-auto catalog__title-count']";
-    private static final String SEARCH_RESULTS = "(//div[@class='pa-0 content__title col col-12'])[1]";
 
     public SearchPage() {
 
@@ -28,20 +23,20 @@ public class SearchPage {
 
     public void openSearchButton() {
         logger.debug("Opening search input");
-        DriverManager.clickElement(BUTTON_SEARCH);
+        DriverManager.clickElement(SearchLocators.BUTTON_SEARCH);
         logger.info("Search input opened");
     }
 
     public void clickSearchInput() {
         logger.debug("Clicking on search input");
-        DriverManager.clickElement(INPUT_SEARCH);
+        DriverManager.clickElement(SearchLocators.INPUT_SEARCH);
         logger.info("Search input clicked");
     }
 
     public void sendKeysSearch(String search) {
         logger.debug("Sending keys to search input");
-        WaitUtils.waitForElementClickable(INPUT_SEARCH);
-        DriverManager.sendKeys(INPUT_SEARCH, search);
+        WaitUtils.waitForElementClickable(SearchLocators.INPUT_SEARCH);
+        DriverManager.sendKeys(SearchLocators.INPUT_SEARCH, search);
         logger.info("Search keys entered");
     }
 
@@ -54,17 +49,17 @@ public class SearchPage {
 
     public String getSearchPageHeaderText() {
         logger.debug("Getting text from search page header");
-        return DriverManager.getTextFromElementWhenVisible(HEADER_SEARCH_PAGE);
+        return DriverManager.getTextFromElementWhenVisible(SearchLocators.HEADER_SEARCH_PAGE);
     }
 
     public String getCounterText() {
         logger.debug("Getting counter text");
-        return DriverManager.getTextFromElement(COUNTER);
+        return DriverManager.getTextFromElement(SearchLocators.COUNTER);
     }
 
     public List<String> getSearchResultItemsTitleText() {
         logger.debug("Getting search result items titles");
-        return DriverManager.findElements(SEARCH_RESULTS).stream()
+        return DriverManager.findElements(SearchLocators.SEARCH_RESULTS).stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }

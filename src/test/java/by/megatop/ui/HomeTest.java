@@ -1,6 +1,6 @@
 package by.megatop.ui;
 
-import by.megatop.ui.pages.HomePage;
+import by.megatop.ui.pages.home.HomePage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

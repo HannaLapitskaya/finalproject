@@ -29,9 +29,8 @@ public class CartTest extends BaseTest {
     @DisplayName("Verify login prompt is displayed for unauthorized users")
     public void shouldDisplayLoginPromptIfUserIsUnauthorized() {
         String expectedResult = "Войдите в систему, чтобы увидеть корзину покупок";
-        String actualResult = cartPage.getLoginPromptMessage();
 
-        Assertions.assertEquals(expectedResult, actualResult, "Login prompt should be displayed when user is not authorized");
+        Assertions.assertEquals(expectedResult, cartPage.getLoginPromptMessage(), "Login prompt should be displayed when user is not authorized");
     }
 
     @Test
@@ -40,9 +39,8 @@ public class CartTest extends BaseTest {
         cartPage.addItemToCart();
 
         String expectedResult = "В корзине 1 товар";
-        String actualResult = cartPage.getCounterItemsText();
 
-        Assertions.assertEquals(expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, cartPage.getCounterItemsText());
     }
 
     @Test
@@ -52,8 +50,7 @@ public class CartTest extends BaseTest {
         cartPage.clickIncreaseItemQuantityButton();
 
         String expectedResult = "1 шт.";
-        String actualResult = cartPage.getCounterItemParamsText();
 
-        Assertions.assertEquals(expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, cartPage.getCounterItemParamsText());
     }
 }

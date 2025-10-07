@@ -1,6 +1,6 @@
 package by.megatop.ui;
 
-import by.megatop.ui.pages.LoginPage;
+import by.megatop.ui.pages.login.LoginPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,7 +1,7 @@
 package by.megatop.ui;
 
-import by.megatop.ui.pages.BasePage;
-import by.megatop.ui.pages.UnsubscribePage;
+import by.megatop.ui.pages.base.BasePage;
+import by.megatop.ui.pages.unsubscribe.UnsubscribePage;
 import by.megatop.ui.utils.WaitUtils;
 import by.megatop.ui.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;

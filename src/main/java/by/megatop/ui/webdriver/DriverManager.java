@@ -1,6 +1,5 @@
 package by.megatop.ui.webdriver;
 
-import by.megatop.ui.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
