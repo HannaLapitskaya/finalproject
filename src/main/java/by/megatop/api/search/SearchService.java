@@ -1,11 +1,11 @@
-package by.megatop.api;
+package by.megatop.api.search;
 
-import io.restassured.response.Response;
+import by.megatop.api.base.BaseAPIService;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static by.megatop.api.APIConstants.BASE_URL;
+import static by.megatop.api.base.APIConstants.BASE_URL;
 
 public class SearchService extends BaseAPIService {
     private static final String URL = BASE_URL + "/api/v1/search";

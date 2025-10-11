@@ -1,4 +1,7 @@
-package by.megatop.api;
+package by.megatop.api.login;
+
+import by.megatop.api.base.APIConstants;
+import by.megatop.api.base.BaseAPIService;
 
 import java.util.HashMap;
 import java.util.Map;

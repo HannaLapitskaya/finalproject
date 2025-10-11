@@ -1,4 +1,4 @@
-package by.megatop.ui;
+package by.megatop.ui.unsubscribe;
 
 import by.megatop.ui.pages.base.BasePage;
 import by.megatop.ui.pages.unsubscribe.UnsubscribeExpectedMessages;

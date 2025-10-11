@@ -1,4 +1,4 @@
-package by.megatop.api;
+package by.megatop.api.giftsertificate;
 
 import by.megatop.utils.LoginUtils;
 import io.qameta.allure.*;

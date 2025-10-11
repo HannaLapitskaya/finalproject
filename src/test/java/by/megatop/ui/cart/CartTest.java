@@ -1,5 +1,6 @@
-package by.megatop.ui;
+package by.megatop.ui.cart;
 
+import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.cart.CartExpectedMessages;
 import by.megatop.ui.pages.cart.CartPage;
 import io.qameta.allure.*;

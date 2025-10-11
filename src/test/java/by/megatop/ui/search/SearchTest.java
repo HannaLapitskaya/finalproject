@@ -1,5 +1,6 @@
-package by.megatop.ui;
+package by.megatop.ui.search;
 
+import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.search.SearchExpectedMessages;
 import by.megatop.ui.pages.search.SearchPage;
 import io.qameta.allure.*;

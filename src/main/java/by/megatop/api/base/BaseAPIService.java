@@ -1,4 +1,4 @@
-package by.megatop.api;
+package by.megatop.api.base;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;

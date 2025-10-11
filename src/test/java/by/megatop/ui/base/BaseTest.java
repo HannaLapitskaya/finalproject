@@ -1,4 +1,4 @@
-package by.megatop.ui;
+package by.megatop.ui.base;
 
 import by.megatop.ui.pages.base.BasePage;
 import by.megatop.webdriver.DriverManager;

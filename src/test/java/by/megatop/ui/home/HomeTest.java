@@ -1,5 +1,6 @@
-package by.megatop.ui;
+package by.megatop.ui.home;
 
+import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.home.HomeExpectedMessages;
 import by.megatop.ui.pages.home.HomePage;
 import io.qameta.allure.*;

@@ -1,4 +1,4 @@
-package by.megatop.api;
+package by.megatop.api.base;
 
 public class APIConstants {
 

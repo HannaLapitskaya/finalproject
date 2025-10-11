@@ -1,4 +1,4 @@
-package by.megatop.api;
+package by.megatop.api.login;
 
 import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;

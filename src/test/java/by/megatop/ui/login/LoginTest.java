@@ -1,5 +1,6 @@
-package by.megatop.ui;
+package by.megatop.ui.login;
 
+import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.login.LoginExpectedMessages;
 import by.megatop.ui.pages.login.LoginPage;
 import io.qameta.allure.*;
