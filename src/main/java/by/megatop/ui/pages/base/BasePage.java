@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class BasePage {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(BasePage.class);
 
     public BasePage() {
 
@@ -30,6 +30,11 @@ public class BasePage {
         DriverManager.clickElementWhenClickable(BaseLocators.BUTTON_ACCEPT_COOKIES);
         WaitUtils.waitForPageToLoad();
         logger.info("Cookies accepted");
+    }
+
+    public void clickCityByLocationAndAcceptCookies() {
+        clickCityByLocation();
+        clickAcceptCookiesButton();
     }
 
     public void clickWomanCategory() {

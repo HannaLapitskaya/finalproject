@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CartPage {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(CartPage.class);
 
     public CartPage() {
 

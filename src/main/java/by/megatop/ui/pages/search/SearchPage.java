@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class SearchPage {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(SearchPage.class);
 
     public SearchPage() {
 
@@ -45,6 +45,11 @@ public class SearchPage {
         Actions actions = new Actions(getDriver());
         actions.sendKeys(Keys.ENTER).perform();
         logger.info("Search started successfully by pressing ENTER");
+    }
+
+    public void sendKeysAndStartSearch(String search) {
+        sendKeysSearch(search);
+        startSearch();
     }
 
     public String getSearchPageHeaderText() {

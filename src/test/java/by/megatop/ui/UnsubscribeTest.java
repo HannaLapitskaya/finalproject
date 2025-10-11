@@ -24,8 +24,7 @@ public class UnsubscribeTest {
         basePage = new BasePage();
 
         unsubscribePage.openUnsubscribePage();
-        basePage.clickCityByLocation();
-        basePage.clickAcceptCookiesButton();
+        basePage.clickCityByLocationAndAcceptCookies();
     }
 
     @AfterEach

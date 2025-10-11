@@ -23,7 +23,6 @@ public class LoginUtils {
         return generateString(PASSWORD_LENGTH, generateNumberOrLetter);
     }
 
-
     public static String generatePhoneNumberForAPI() {
         return PHONE_BY_CODE + generatePhoneNumberForUI();
     }

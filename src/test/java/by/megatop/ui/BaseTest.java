@@ -14,8 +14,7 @@ public class BaseTest {
         basePage = new BasePage();
 
         basePage.openSite();
-        basePage.clickCityByLocation();
-        basePage.clickAcceptCookiesButton();
+        basePage.clickCityByLocationAndAcceptCookies();
         basePage.clickWomanCategory();
     }
 

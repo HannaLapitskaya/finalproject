@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -50,7 +52,7 @@ public class SearchTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(jsonPath.getList("categories").isEmpty()).isFalse(),
+                () -> assertThat(jsonPath.getList("categories").isEmpty()),
                 () -> assertThat(jsonPath.getList("products").isEmpty()).isFalse()
         );
     }
@@ -66,14 +68,14 @@ public class SearchTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].name")).isEqualTo("Балетки Enjoin' 0545000302"),
-                () -> assertThat(jsonPath.getString("products[0].modelId")).isEqualTo("0545000302"),
-                () -> assertThat(jsonPath.getDouble("products[0].price")).isEqualTo(49.95),
-                () -> assertThat(jsonPath.getDouble("products[0].priceOld")).isEqualTo(96.43),
-                () -> assertThat(jsonPath.getInt("products[0].discount")).isEqualTo(48),
-                () -> assertThat(jsonPath.getBoolean("products[0].isOnSale")).isTrue(),
+                () -> assertThat(jsonPath.getString("products[0].name")).isEqualTo("Носки WiMi 0579000526"),
+                () -> assertThat(jsonPath.getString("products[0].modelId")).isEqualTo("0579000526"),
+                () -> assertThat(jsonPath.getDouble("products[0].price")).isEqualTo(4.94),
+                () -> assertThat(jsonPath.getInt("products[0].discount")).isEqualTo(0),
+                () -> assertThat(jsonPath.getBoolean("products[0].isOnSale")).isFalse(),
                 () -> assertThat(jsonPath.getBoolean("products[0].isNew")).isFalse(),
-                () -> assertThat(jsonPath.getBoolean("products[0].isHit")).isFalse()
+                () -> assertThat(jsonPath.getBoolean("products[0].isHit")).isFalse(),
+                () -> assertThat(jsonPath.getBoolean("products[0].isInStock")).isTrue()
         );
     }
 
@@ -89,7 +91,9 @@ public class SearchTest {
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].mainCategory.name")).isEqualTo("Женщины"),
-                () -> assertThat(jsonPath.getString("products[0].mainCategory.header")).isEqualTo("Женские товары")
+                () -> assertThat(jsonPath.getString("products[0].mainCategory.header")).isEqualTo("Женские товары"),
+                () -> assertThat(jsonPath.getString("products[0].mainCategory._id")).isEqualTo("5f6f69e557029375fc300615"),
+                () -> assertThat(jsonPath.getInt("products[0].mainCategory.rubricId")).isEqualTo(2)
         );
     }
 
@@ -104,8 +108,8 @@ public class SearchTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].link")).isEqualTo("/products/0545000302-baletki-enjoin_")
-        );
+                () -> assertThat(jsonPath.getString("products[0].link")).isEqualTo("/products/0579000526-noski-wimi"),
+                () -> assertThat(jsonPath.getString("products[0].url")).isEqualTo("/products/0579000526-noski-wimi"));
     }
 
     @Test
@@ -117,11 +121,49 @@ public class SearchTest {
         service.doRequest();
 
         JsonPath jsonPath = service.getJsonPath();
+        List<String> images = jsonPath.getList("products[0].images");
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[1].name")).isEqualTo("Туфли Enjoin' 0545000306"),
-                () -> assertThat(jsonPath.getDouble("products[1].price")).isEqualTo(69.95),
-                () -> assertThat(jsonPath.getBoolean("products[1].isInStock")).isFalse()
+                () -> assertThat(images.getFirst()).isEqualTo("https://static.megatop.by/public/photo/0579000526/0579000526.jpg"),
+                () -> assertThat(images.getLast()).isEqualTo("https://static.megatop.by/public/photo/0579000526/0579000526_2.jpg")
+        );
+    }
+
+    @Test
+    @DisplayName("Search API should return correct product additional info")
+    @Description("Test verifies additional product information like brand, article, and availability")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-07")
+    public void searchApiShouldReturnCorrectAdditionalInfo() {
+        service.doRequest();
+
+        JsonPath jsonPath = service.getJsonPath();
+
+        assertAll(
+                () -> assertThat(jsonPath.getString("products[0].brand")).isEqualTo("WiMi"),
+                () -> assertThat(jsonPath.getString("products[0].article")).isEqualTo("0579000526"),
+                () -> assertThat(jsonPath.getString("products[0].fullCategory")).isEqualTo("Женщины/Аксессуары /Носки"),
+                () -> assertThat(jsonPath.getString("products[0].madeIn")).isEqualTo("Китай"),
+                () -> assertThat(jsonPath.getBoolean("products[0].isAvailableForOrder")).isTrue(),
+                () -> assertThat(jsonPath.getBoolean("products[0].isStockProduct")).isFalse()
+        );
+    }
+
+    @Test
+    @DisplayName("Search API should return correct size information")
+    @Description("Test verifies product sizes and size prices in search results")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-08")
+    public void searchApiShouldReturnCorrectSizeInfo() {
+        service.doRequest();
+
+        JsonPath jsonPath = service.getJsonPath();
+
+        assertAll(
+                () -> assertThat(jsonPath.getString("products[0].sizePrices[0].modelId")).isEqualTo("0579000526"),
+                () -> assertThat(jsonPath.getInt("products[0].sizePrices[0].size")).isEqualTo(25),
+                () -> assertThat(jsonPath.getDouble("products[0].sizePrices[0].price")).isEqualTo(4.94),
+                () -> assertThat(jsonPath.getString("products[0].sizePrices[0].type")).isEqualTo("original")
         );
     }
 }

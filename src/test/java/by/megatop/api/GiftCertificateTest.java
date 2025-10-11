@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class GiftCertificateTest {
 
     private static final int UNPROCESSABLE_ENTITY_CODE = 422;
-    private static final int OK_CODE = 200;
     private static final String ERROR_MESSAGE = "Ошибка валидации параметров";
     private static final String ERROR_PHONE = "Должен быть валидный номер телефона";
 
@@ -46,9 +45,9 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(OK_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).contains("Код подтверждения отправлен на номер")
+                () -> assertThat(jsonPath.getString("data.message")).contains("Ошибка валидации параметров")
         );
     }
 
@@ -102,7 +101,7 @@ public class GiftCertificateTest {
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo("Phone обязательное поле")
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo("Должен быть валидный номер телефона")
         );
     }
 

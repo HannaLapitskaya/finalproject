@@ -31,8 +31,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-01")
     public void shouldDisplayCorrectPageHeaderWhenSearchIsPerformed() {
-        searchPage.sendKeysSearch("Лоферы");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("Лоферы");
 
         Assertions.assertEquals(SearchExpectedMessages.SEARCH_RESULTS_HEADER, searchPage.getSearchPageHeaderText());
     }
@@ -43,8 +42,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-02")
     public void shouldShow0ResultsCounterWhenNoProductsAreFound() {
-        searchPage.sendKeysSearch("полянка");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("полянка");
 
         Assertions.assertEquals(SearchExpectedMessages.ZERO_RESULTS_COUNT, searchPage.getCounterText());
     }
@@ -55,8 +53,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-03")
     public void shouldDisplayNonZeroResultsCounterWhenProductsAreFound() {
-        searchPage.sendKeysSearch("шнурки");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("шнурки");
 
         Assertions.assertEquals(SearchExpectedMessages.MULTIPLE_RESULTS_COUNT, searchPage.getCounterText());
     }
@@ -67,8 +64,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-04")
     public void shouldFindExactlyOneProductWhenSearchingByFullProductName() {
-        searchPage.sendKeysSearch("Крем-краска WiMi");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("1208000465");
 
         Assertions.assertEquals(SearchExpectedMessages.SINGLE_RESULT_COUNT, searchPage.getCounterText());
     }
@@ -79,8 +75,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-05")
     public void shouldFindExactlyOneProductWhenSearchingByProductArticleNumber() {
-        searchPage.sendKeysSearch("1403000818");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("1403000818");
 
         Assertions.assertEquals(SearchExpectedMessages.SINGLE_RESULT_COUNT, searchPage.getCounterText());
     }
@@ -91,8 +86,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-06")
     public void shouldDisplayOnlyProductsContainingSearchTermInTheirTitles() {
-        searchPage.sendKeysSearch("казаки");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("казаки");
 
         List<String> results = searchPage.getSearchResultItemsTitleText();
 
@@ -107,8 +101,7 @@ public class SearchTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-07")
     public void shouldDisplayCorrectProductAsFirstResultWhenSearching() {
-        searchPage.sendKeysSearch("кеды");
-        searchPage.startSearch();
+        searchPage.sendKeysAndStartSearch("кеды");
 
         List<String> results = searchPage.getSearchResultItemsTitleText();
 

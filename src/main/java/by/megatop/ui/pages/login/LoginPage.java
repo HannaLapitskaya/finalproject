@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class LoginPage {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(LoginPage.class);
 
     public LoginPage() {
 
@@ -38,6 +38,11 @@ public class LoginPage {
         logger.debug("Entering phone in phone field");
         DriverManager.sendKeys(LoginLocators.INPUT_PHONE, phone);
         logger.info("Phone number entered successfully");
+    }
+
+    public void sendKeysPhoneNumberAndPassword(String phone, String password) {
+        sendKeysInputPhone(phone);
+        sendKeysInputPassword(password);
     }
 
     public void clickButtonSubmitLogin() {

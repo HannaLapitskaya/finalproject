@@ -8,7 +8,7 @@ import org.openqa.selenium.*;
 
 public class UnsubscribePage {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(UnsubscribePage.class);
 
     public UnsubscribePage() {
 

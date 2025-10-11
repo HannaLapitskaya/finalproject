@@ -31,9 +31,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LN-01")
     public void shouldDisplayLoginHeaderWhenLoginFormIsOpened() {
-        String expectedResult = "ВХОД";
-
-        Assertions.assertEquals(expectedResult, loginPage.getHeaderLoginFormText());
+        Assertions.assertEquals(LoginExpectedMessages.LOGIN_FORM_HEADER, loginPage.getHeaderLoginFormText());
     }
 
     @Test
@@ -42,9 +40,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("LN-02")
     public void shouldDisplayForgotPasswordLinkWhenLoginFormIsOpened() {
-        String expectedResult = "Забыли пароль?";
-
-        Assertions.assertEquals(expectedResult, loginPage.getForgotPasswordText());
+        Assertions.assertEquals(LoginExpectedMessages.FORGOT_PASSWORD_LINK_TEXT, loginPage.getForgotPasswordText());
     }
 
     @Test
@@ -88,8 +84,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LN-06")
     public void shouldShowErrorMessageWhenInvalidCredentialsAreUsed() {
-        loginPage.sendKeysInputPhone(generatePhoneNumberForUI());
-        loginPage.sendKeysInputPassword(generatePassword());
+        loginPage.sendKeysPhoneNumberAndPassword(generatePhoneNumberForUI(),generatePassword());
         loginPage.clickButtonSubmitLogin();
 
         Assertions.assertEquals(LoginExpectedMessages.INVALID_CREDENTIALS_ERROR, loginPage.getErrorInvalidCredentialsText());
