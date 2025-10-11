@@ -1,5 +1,6 @@
 package by.megatop.ui.pages.search;
 
+import by.megatop.ui.pages.cart.CartLocators;
 import by.megatop.utils.WaitUtils;
 import by.megatop.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -67,5 +68,13 @@ public class SearchPage {
         return DriverManager.findElements(SearchLocators.SEARCH_RESULTS).stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
+    }
+
+    public String getSimilarQueriesText() {
+        return DriverManager.getTextFromElement(SearchLocators.SIMILAR_QUERIES_TEXT);
+    }
+
+    public String getCategoriesText() {
+        return DriverManager.getTextFromElement(SearchLocators.CATEGORIES_SECTION);
     }
 }

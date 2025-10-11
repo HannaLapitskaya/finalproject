@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 @Epic("UI Testing")
 @Feature("Search Functionality")
 @Story("Product Search")
@@ -106,5 +109,19 @@ public class SearchTest extends BaseTest {
         List<String> results = searchPage.getSearchResultItemsTitleText();
 
         Assertions.assertEquals(SearchExpectedMessages.FIRST_RESULT_TITLE, results.getFirst());
+    }
+
+    @Test
+    @DisplayName("Should display search suggestions and categories when entering query")
+    @Description("Verify that search suggestions and categories sections are displayed when starting to type characters")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("SH-08")
+    public void shouldDisplaySearchSuggestionsAndCategoriesWhenTyping() {
+        searchPage.sendKeysSearch("сумка");
+
+        assertAll(
+                () -> assertThat(searchPage.getCategoriesText()).isEqualTo(SearchExpectedMessages.CATEGORIES_SECTION_TITLE),
+                () -> assertThat(searchPage.getSimilarQueriesText()).isEqualTo(SearchExpectedMessages.RELATED_SEARCHES_SECTION_TITLE)
+        );
     }
 }
