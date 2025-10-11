@@ -2,6 +2,7 @@ package by.megatop.ui.pages.cart;
 
 public class CartLocators {
 
+    public static final String HEADER_CART_PAGE = "//div[@class='cart__title']";
     public static final String BUTTON_CART_ICON = "(//div[@class='v-image v-responsive ma-auto theme--light'])[3]";
     public static final String EMPTY_CART_MESSAGE = "(//div[@class='text-center mt-2'])[1]";
     public static final String LOGIN_PROMPT_MESSAGE = "(//div[@class='text-center mt-2'])[2]";

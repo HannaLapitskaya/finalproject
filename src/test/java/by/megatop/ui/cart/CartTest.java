@@ -63,4 +63,15 @@ public class CartTest extends BaseTest {
 
         Assertions.assertEquals(CartExpectedMessages.SINGLE_QUANTITY_TEXT, cartPage.getCounterItemParamsText());
     }
+
+    @Test
+    @DisplayName("Verify cart page header is displayed after adding item")
+    @Description("Test verifies that cart page header is displayed correctly after adding item to cart")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("СT-05")
+    public void shouldDisplayCartPageHeaderWhenItemAddedToCart() {
+        cartPage.addItemToCart();
+
+        Assertions.assertEquals(CartExpectedMessages.CART_PAGE_HEADER, cartPage.getCartPageHeader());
+    }
 }

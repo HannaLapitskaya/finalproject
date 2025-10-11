@@ -76,4 +76,8 @@ public class CartPage {
         logger.debug("Getting current item quantity");
         return DriverManager.getTextFromElementWhenVisible(CartLocators.ITEM_QUANTITY_DISPLAY);
     }
+
+    public String getCartPageHeader() {
+        return DriverManager.getTextFromElementWhenVisible(CartLocators.HEADER_CART_PAGE);
+    }
 }
