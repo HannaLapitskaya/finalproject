@@ -5,6 +5,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +17,7 @@ public class DriverManager {
 
     private static final int DEFAULT_TIMEOUT = 20;
     private static WebDriver driver;
-    private static final int MAX_RETRY_ATTEMPTS = 4;
+    private static final int MAX_RETRY_ATTEMPTS = 3;
 
     private DriverManager() {
 
@@ -24,9 +25,14 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-extensions");
+            options.addArguments("--window-size=1920,1080");
+
+            driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         }
         return driver;
     }
