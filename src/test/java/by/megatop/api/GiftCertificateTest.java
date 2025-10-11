@@ -101,7 +101,7 @@ public class GiftCertificateTest {
                 () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo("Должен быть валидный номер телефона")
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
         );
     }
 
