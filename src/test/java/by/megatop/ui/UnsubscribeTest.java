@@ -3,12 +3,11 @@ package by.megatop.ui;
 import by.megatop.ui.pages.base.BasePage;
 import by.megatop.ui.pages.unsubscribe.UnsubscribeExpectedMessages;
 import by.megatop.ui.pages.unsubscribe.UnsubscribePage;
-import by.megatop.ui.utils.WaitUtils;
-import by.megatop.ui.webdriver.DriverManager;
+import by.megatop.webdriver.DriverManager;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 
-import static by.megatop.ui.utils.EmailUtils.generateRandomGmail;
+import static by.megatop.utils.EmailUtils.generateRandomGmail;
 
 @Epic("UI Testing")
 @Feature("Email Subscriptions")

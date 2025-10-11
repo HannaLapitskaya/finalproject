@@ -1,4 +1,4 @@
-package by.megatop.ui.webdriver;
+package by.megatop.webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -9,8 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
-import static by.megatop.ui.utils.WaitUtils.waitForElementClickable;
-import static by.megatop.ui.utils.WaitUtils.waitForElementVisible;
+import static by.megatop.utils.WaitUtils.waitForElementClickable;
+import static by.megatop.utils.WaitUtils.waitForElementVisible;
 
 public class DriverManager {
 
@@ -86,9 +86,5 @@ public class DriverManager {
             }
         }
         return null;
-    }
-
-    public static String getAttributeFromElement(String xpath, String attribute) {
-        return findElement(xpath).getAttribute(attribute);
     }
 }

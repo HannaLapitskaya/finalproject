@@ -1,6 +1,6 @@
-package by.megatop.ui.utils;
+package by.megatop.utils;
 
-import by.megatop.ui.webdriver.DriverManager;
+import by.megatop.webdriver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -30,9 +30,5 @@ public class WaitUtils {
         getWait().until(driver ->
                 Objects.equals(((JavascriptExecutor) driver).executeScript("return document.readyState"), "complete")
         );
-    }
-
-    public static void waitForElementToDisappear(String xpath) {
-        getWait().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
     }
 }

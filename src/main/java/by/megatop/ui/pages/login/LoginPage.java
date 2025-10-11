@@ -1,6 +1,6 @@
 package by.megatop.ui.pages.login;
 
-import by.megatop.ui.webdriver.DriverManager;
+import by.megatop.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

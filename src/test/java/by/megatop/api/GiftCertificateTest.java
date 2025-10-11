@@ -1,6 +1,6 @@
 package by.megatop.api;
 
-import by.megatop.ui.utils.LoginUtils;
+import by.megatop.utils.LoginUtils;
 import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;

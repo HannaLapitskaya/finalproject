@@ -1,8 +1,7 @@
 package by.megatop.ui;
 
 import by.megatop.ui.pages.base.BasePage;
-import by.megatop.ui.utils.WaitUtils;
-import by.megatop.ui.webdriver.DriverManager;
+import by.megatop.webdriver.DriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static by.megatop.ui.utils.LoginUtils.generatePassword;
-import static by.megatop.ui.utils.LoginUtils.generatePhoneNumberForUI;
+import static by.megatop.utils.LoginUtils.generatePassword;
+import static by.megatop.utils.LoginUtils.generatePhoneNumberForUI;
 
 @Epic("UI Testing")
 @Feature("Authentication")

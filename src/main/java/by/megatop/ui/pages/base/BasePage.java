@@ -1,7 +1,7 @@
 package by.megatop.ui.pages.base;
 
-import by.megatop.ui.utils.WaitUtils;
-import by.megatop.ui.webdriver.DriverManager;
+import by.megatop.utils.WaitUtils;
+import by.megatop.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

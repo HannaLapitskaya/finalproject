@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static by.megatop.ui.utils.LoginUtils.generatePassword;
-import static by.megatop.ui.utils.LoginUtils.generatePhoneNumberForAPI;
+import static by.megatop.utils.LoginUtils.generatePassword;
+import static by.megatop.utils.LoginUtils.generatePhoneNumberForAPI;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 

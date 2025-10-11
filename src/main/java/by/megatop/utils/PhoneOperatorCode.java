@@ -1,6 +1,7 @@
-package by.megatop.ui.utils;
+package by.megatop.utils;
 
 public enum PhoneOperatorCode {
+
     CODE44("44"),
     CODE29("29"),
     CODE25("25"),

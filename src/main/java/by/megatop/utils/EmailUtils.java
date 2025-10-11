@@ -1,4 +1,4 @@
-package by.megatop.ui.utils;
+package by.megatop.utils;
 
 import java.util.Random;
 
