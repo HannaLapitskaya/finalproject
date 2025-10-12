@@ -20,7 +20,7 @@ public class LoginPage {
 
     public String getHeaderLoginFormText() {
         logger.debug("Getting login form header text");
-        String headerText = DriverManager.getTextFromElement(LoginLocators.HEADER_LOGIN_FORM);
+        String headerText = DriverManager.getTextFromElementWhenVisibleWithRetry(LoginLocators.HEADER_LOGIN_FORM);
         logger.info("Retrieved login form header: {}", headerText);
         return headerText;
     }
