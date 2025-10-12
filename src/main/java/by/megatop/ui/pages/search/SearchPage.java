@@ -8,10 +8,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static by.megatop.webdriver.DriverManager.getDriver;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static by.megatop.webdriver.DriverManager.getDriver;
 
 public class SearchPage {
 

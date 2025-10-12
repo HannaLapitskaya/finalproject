@@ -85,7 +85,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LN-06")
     public void shouldShowErrorMessageWhenInvalidCredentialsAreUsed() {
-        loginPage.sendKeysPhoneNumberAndPassword(generatePhoneNumberForUI(),generatePassword());
+        loginPage.sendKeysPhoneNumberAndPassword(generatePhoneNumberForUI(), generatePassword());
         loginPage.clickButtonSubmitLogin();
 
         Assertions.assertEquals(LoginExpectedMessages.INVALID_CREDENTIALS_ERROR, loginPage.getErrorInvalidCredentialsText());

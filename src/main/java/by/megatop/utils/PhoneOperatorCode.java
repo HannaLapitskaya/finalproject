@@ -7,7 +7,7 @@ public enum PhoneOperatorCode {
     CODE25("25"),
     CODE33("33");
 
-    private String code;
+    private final String code;
 
     PhoneOperatorCode(String code) {
         this.code = code;

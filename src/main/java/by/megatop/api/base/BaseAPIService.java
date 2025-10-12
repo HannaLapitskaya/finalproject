@@ -3,9 +3,9 @@ package by.megatop.api.base;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import static io.restassured.RestAssured.given;
-
 import java.util.Map;
+
+import static io.restassured.RestAssured.given;
 
 public abstract class BaseAPIService {
 
