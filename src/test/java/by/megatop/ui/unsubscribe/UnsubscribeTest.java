@@ -1,11 +1,20 @@
 package by.megatop.ui.unsubscribe;
 
-import by.megatop.ui.pages.base.BasePage;
 import by.megatop.ui.pages.unsubscribe.UnsubscribeExpectedMessages;
 import by.megatop.ui.pages.unsubscribe.UnsubscribePage;
 import by.megatop.webdriver.DriverManager;
-import io.qameta.allure.*;
-import org.junit.jupiter.api.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static by.megatop.utils.EmailUtils.generateRandomGmail;
 
@@ -16,15 +25,13 @@ import static by.megatop.utils.EmailUtils.generateRandomGmail;
 public class UnsubscribeTest {
 
     private UnsubscribePage unsubscribePage;
-    private BasePage basePage;
 
     @BeforeEach
     public void openUnsubscribePageAndCloseCookies() {
         unsubscribePage = new UnsubscribePage();
-        basePage = new BasePage();
 
         unsubscribePage.openUnsubscribePage();
-        basePage.clickCityByLocationAndAcceptCookies();
+        unsubscribePage.clickCityByLocationAndAcceptCookies();
     }
 
     @AfterEach

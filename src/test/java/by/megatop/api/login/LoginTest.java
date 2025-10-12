@@ -1,6 +1,12 @@
 package by.megatop.api.login;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +46,7 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithIncorrectData() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
@@ -58,7 +64,7 @@ public class LoginTest {
     public void shouldReturn500StatusCodeWhenLoginWithEmptyEmailAndEmptyPassword() {
         service.doRequest("", "");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.INTERNAL_SERVER_ERROR_CODE),
@@ -75,7 +81,7 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWhenLoginWithValidPhoneAndEmptyPassword() {
         service.doRequest(generatePhoneNumberForAPI(), "");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -95,7 +101,7 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithNonNumericPhone() {
         service.doRequest(generatePassword(), "");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -116,7 +122,7 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingFewerThan12Digits() {
         service.doRequest("37525", generatePassword());
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
@@ -139,7 +145,7 @@ public class LoginTest {
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingMoreThan12Digits() {
         service.doRequest(generatePhoneNumberForAPI() + "123", generatePassword());
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(

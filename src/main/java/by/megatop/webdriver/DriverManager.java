@@ -16,8 +16,8 @@ import static by.megatop.utils.WaitUtils.waitForElementVisible;
 public class DriverManager {
 
     private static final int DEFAULT_TIMEOUT = 20;
-    private static WebDriver driver;
     private static final int MAX_RETRY_ATTEMPTS = 3;
+    private static WebDriver driver;
 
     private DriverManager() {
 

@@ -1,12 +1,13 @@
 package by.megatop.ui.pages.unsubscribe;
 
+import by.megatop.ui.pages.base.BasePage;
 import by.megatop.utils.WaitUtils;
 import by.megatop.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-public class UnsubscribePage {
+public class UnsubscribePage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(UnsubscribePage.class);
 

@@ -1,7 +1,13 @@
 package by.megatop.api.giftsertificate;
 
 import by.megatop.utils.LoginUtils;
-import io.qameta.allure.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,12 +43,12 @@ public class GiftCertificateTest {
     public void SendConfirmationCodeWithValidPhone() {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI());
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath body = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).contains(GiftCertificateExpectedMessages.VALIDATION_ERROR)
+                () -> assertThat(body.getString("data.message")).contains(GiftCertificateExpectedMessages.VALIDATION_ERROR)
         );
     }
 
@@ -54,7 +60,7 @@ public class GiftCertificateTest {
     public void PhoneNumberLessThan12Digits() {
         service.doRequest("375255");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
@@ -72,7 +78,7 @@ public class GiftCertificateTest {
     public void PhoneNumberMoreThan12Digits() {
         service.doRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
@@ -90,7 +96,7 @@ public class GiftCertificateTest {
     public void emptyPhoneNumber() {
         service.doRequest("");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
@@ -108,7 +114,7 @@ public class GiftCertificateTest {
     public void nonDigitPhoneNumber() {
         service.doRequest("рыпвао");
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
@@ -126,7 +132,7 @@ public class GiftCertificateTest {
     public void nullPhoneNumber() {
         service.doRequest(null);
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),

@@ -1,9 +1,15 @@
 package by.megatop.ui.home;
 
-import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.home.HomeExpectedMessages;
 import by.megatop.ui.pages.home.HomePage;
-import io.qameta.allure.*;
+import by.megatop.ui.promo.PromoTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +19,7 @@ import org.junit.jupiter.api.Test;
 @Feature("Home Page")
 @Story("Home Page Content Verification")
 @DisplayName("UI home functionality tests")
-public class HomeTest extends BaseTest {
+public class HomeTest extends PromoTest {
 
     private HomePage homePage;
 

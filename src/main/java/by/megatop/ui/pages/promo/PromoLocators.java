@@ -1,6 +1,6 @@
-package by.megatop.ui.pages.base;
+package by.megatop.ui.pages.promo;
 
-public class BaseLocators {
+public class PromoLocators {
 
     public static final String URL = "https://megatop.by/";
     public static final String BUTTON_ACCEPT_CITY_BY_LOCATION = "//button[@class='btn-gray v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default' and contains(.//text(), 'Да')]";

@@ -1,9 +1,15 @@
 package by.megatop.ui.search;
 
-import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.search.SearchExpectedMessages;
 import by.megatop.ui.pages.search.SearchPage;
-import io.qameta.allure.*;
+import by.megatop.ui.promo.PromoTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @Feature("Search Functionality")
 @Story("Product Search")
 @DisplayName("UI search functionality tests")
-public class SearchTest extends BaseTest {
+public class SearchTest extends PromoTest {
 
     private SearchPage searchPage;
 

@@ -1,9 +1,15 @@
 package by.megatop.ui.login;
 
-import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.login.LoginExpectedMessages;
 import by.megatop.ui.pages.login.LoginPage;
-import io.qameta.allure.*;
+import by.megatop.ui.promo.PromoTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +22,7 @@ import static by.megatop.utils.LoginUtils.generatePhoneNumberForUI;
 @Feature("Authentication")
 @Story("Login Form Validation")
 @DisplayName("UI login functionality tests")
-public class LoginTest extends BaseTest {
+public class LoginTest extends PromoTest {
 
     private LoginPage loginPage;
 

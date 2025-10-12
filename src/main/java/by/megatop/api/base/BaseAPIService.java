@@ -33,7 +33,7 @@ public abstract class BaseAPIService {
         return response.getBody().asPrettyString();
     }
 
-    public JsonPath getJsonPath() {
+    public JsonPath getJsonBody() {
         return new JsonPath(getBody());
     }
 

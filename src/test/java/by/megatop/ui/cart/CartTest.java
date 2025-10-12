@@ -1,9 +1,15 @@
 package by.megatop.ui.cart;
 
-import by.megatop.ui.base.BaseTest;
 import by.megatop.ui.pages.cart.CartExpectedMessages;
 import by.megatop.ui.pages.cart.CartPage;
-import io.qameta.allure.*;
+import by.megatop.ui.promo.PromoTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +19,7 @@ import org.junit.jupiter.api.Test;
 @Feature("Shopping Cart")
 @Story("Cart Functionality")
 @DisplayName("UI cart functionality tests")
-public class CartTest extends BaseTest {
+public class CartTest extends PromoTest {
 
     private CartPage cartPage;
 

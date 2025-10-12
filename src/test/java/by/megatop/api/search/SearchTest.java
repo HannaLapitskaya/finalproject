@@ -1,6 +1,12 @@
 package by.megatop.api.search;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,7 +55,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectStructure() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getList("products").isEmpty()).isFalse(),
@@ -65,7 +71,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectFirstProduct() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].name")).isEqualTo("Носки WiMi 0579000526"),
@@ -87,7 +93,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectCategory() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].mainCategory.name")).isEqualTo("Женщины"),
@@ -105,7 +111,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectLinks() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].link")).isEqualTo("/products/0579000526-noski-wimi"),
@@ -120,7 +126,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectSecondProduct() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
         List<String> images = jsonPath.getList("products[0].images");
 
         assertAll(
@@ -137,7 +143,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectAdditionalInfo() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].brand")).isEqualTo("WiMi"),
@@ -157,7 +163,7 @@ public class SearchTest {
     public void searchApiShouldReturnCorrectSizeInfo() {
         service.doRequest();
 
-        JsonPath jsonPath = service.getJsonPath();
+        JsonPath jsonPath = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(jsonPath.getString("products[0].sizePrices[0].modelId")).isEqualTo("0579000526"),
