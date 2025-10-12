@@ -37,21 +37,29 @@ public class UnsubscribePage extends BasePage {
 
     public String getEmailUnsubscribeNotificationText() {
         logger.debug("Getting email unsubscribe notification text");
-        return DriverManager.getTextFromElementWhenVisible(UnsubscribeLocators.TEXT_SUCCESS_MESSAGE);
+        String notificationText = DriverManager.getTextFromElementWhenVisible(UnsubscribeLocators.TEXT_SUCCESS_MESSAGE);
+        logger.info("Retrieved email unsubscribe notification: {}", notificationText);
+        return notificationText;
     }
 
     public String getFormHeaderText() {
         logger.debug("Getting form header text");
-        return DriverManager.getTextFromElementWhenVisibleWithRetry(UnsubscribeLocators.EMAIL_FORM_HEADER);
+        String headerText = DriverManager.getTextFromElementWhenVisibleWithRetry(UnsubscribeLocators.EMAIL_FORM_HEADER);
+        logger.info("Retrieved form header: {}", headerText);
+        return headerText;
     }
 
     public String getPlaceholderInputFieldText() {
         logger.debug("Getting placeholder input field text");
-        return DriverManager.getTextFromElementWhenVisibleWithRetry(UnsubscribeLocators.PLACEHOLDER_INPUT_FIELD);
+        String placeholderText = DriverManager.getTextFromElementWhenVisibleWithRetry(UnsubscribeLocators.PLACEHOLDER_INPUT_FIELD);
+        logger.info("Retrieved placeholder text: {}", placeholderText);
+        return placeholderText;
     }
 
     public String getSuccessfulUnsubscribeText() {
         logger.debug("Getting successful unsubscribe text");
-        return DriverManager.getTextFromElement(UnsubscribeLocators.UNSUBSCRIBE_CONFIRMATION_TEXT);
+        String successText = DriverManager.getTextFromElement(UnsubscribeLocators.UNSUBSCRIBE_CONFIRMATION_TEXT);
+        logger.info("Retrieved successful unsubscribe text: {}", successText);
+        return successText;
     }
 }

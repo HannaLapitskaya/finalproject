@@ -16,11 +16,11 @@ public class LoginService extends BaseAPIService {
 
     }
 
-    public void doRequest() {
+    public void doLoginRequest() {
         doPost(BODY_DEFAULT, URL);
     }
 
-    public void doRequest(String phone, String password) {
+    public void doLoginRequest(String phone, String password) {
         doPost(String.format(BODY_TEMPLATE, phone, password), URL);
     }
 

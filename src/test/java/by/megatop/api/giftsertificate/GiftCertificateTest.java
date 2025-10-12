@@ -41,14 +41,14 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("GS-01")
     public void SendConfirmationCodeWithValidPhone() {
-        service.doRequest(LoginUtils.generatePhoneNumberForAPI());
+        service.doGiftCertificateRequest(LoginUtils.generatePhoneNumberForAPI());
 
-        JsonPath body = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(body.getString("data.message")).contains(GiftCertificateExpectedMessages.VALIDATION_ERROR)
+                () -> assertThat(jsonBody.getString("data.message")).contains(GiftCertificateExpectedMessages.VALIDATION_ERROR)
         );
     }
 
@@ -58,15 +58,15 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("GS-02")
     public void PhoneNumberLessThan12Digits() {
-        service.doRequest("375255");
+        service.doGiftCertificateRequest("375255");
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
+                () -> assertThat(jsonBody.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonBody.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -76,15 +76,15 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("GS-03")
     public void PhoneNumberMoreThan12Digits() {
-        service.doRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
+        service.doGiftCertificateRequest(LoginUtils.generatePhoneNumberForAPI() + 345);
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
+                () -> assertThat(jsonBody.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonBody.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -94,15 +94,15 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("GS-04")
     public void emptyPhoneNumber() {
-        service.doRequest("");
+        service.doGiftCertificateRequest("");
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
+                () -> assertThat(jsonBody.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonBody.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -112,15 +112,15 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("GS-05")
     public void nonDigitPhoneNumber() {
-        service.doRequest("рыпвао");
+        service.doGiftCertificateRequest("рыпвао");
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
+                () -> assertThat(jsonBody.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonBody.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -130,15 +130,15 @@ public class GiftCertificateTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("GS-06")
     public void nullPhoneNumber() {
-        service.doRequest(null);
+        service.doGiftCertificateRequest(null);
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
+                () -> assertThat(jsonBody.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonBody.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 }

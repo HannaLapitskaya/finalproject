@@ -15,17 +15,21 @@ public class CartPage {
     public void clickCartButton() {
         logger.debug("Clicking on cart button");
         DriverManager.clickElement(CartLocators.BUTTON_CART_ICON);
-        logger.info("Cart opened");
+        logger.info("Cart opened successfully");
     }
 
     public String getEmptyCartMessage() {
         logger.debug("Getting empty cart message");
-        return DriverManager.getTextFromElementWhenVisible(CartLocators.EMPTY_CART_MESSAGE);
+        String message = DriverManager.getTextFromElementWhenVisible(CartLocators.EMPTY_CART_MESSAGE);
+        logger.info("Retrieved empty cart message: {}", message);
+        return message;
     }
 
     public String getLoginPromptMessage() {
         logger.debug("Getting login prompt message");
-        return DriverManager.getTextFromElementWhenVisible(CartLocators.LOGIN_PROMPT_MESSAGE);
+        String message = DriverManager.getTextFromElementWhenVisible(CartLocators.LOGIN_PROMPT_MESSAGE);
+        logger.info("Retrieved login prompt message: {}", message);
+        return message;
     }
 
     public void clickAddFirstItemToCartIcon() {
@@ -63,7 +67,9 @@ public class CartPage {
 
     public String getCounterItemsText() {
         logger.info("Getting cart items count");
-        return DriverManager.getTextFromElement(CartLocators.CART_ITEMS_COUNTER);
+        String count = DriverManager.getTextFromElement(CartLocators.CART_ITEMS_COUNTER);
+        logger.info("Retrieved cart items count: {}", count);
+        return count;
     }
 
     public void clickIncreaseItemQuantityButton() {
@@ -74,10 +80,14 @@ public class CartPage {
 
     public String getCounterItemParamsText() {
         logger.debug("Getting current item quantity");
-        return DriverManager.getTextFromElementWhenVisible(CartLocators.ITEM_QUANTITY_DISPLAY);
+        String quantity = DriverManager.getTextFromElementWhenVisible(CartLocators.ITEM_QUANTITY_DISPLAY);
+        logger.info("Retrieved current item quantity: {}", quantity);
+        return quantity;
     }
 
     public String getCartPageHeader() {
-        return DriverManager.getTextFromElementWhenVisible(CartLocators.HEADER_CART_PAGE);
+        String header = DriverManager.getTextFromElementWhenVisible(CartLocators.HEADER_CART_PAGE);
+        logger.info("Retrieved cart page header: {}", header);
+        return header;
     }
 }

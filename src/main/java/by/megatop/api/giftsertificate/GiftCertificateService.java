@@ -16,7 +16,7 @@ public class GiftCertificateService extends BaseAPIService {
 
     }
 
-    public void doRequest(String phone) {
+    public void doGiftCertificateRequest(String phone) {
         doPost(BODY_TEMPLATE, URL);
     }
 

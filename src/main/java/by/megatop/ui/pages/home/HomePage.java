@@ -14,26 +14,43 @@ public class HomePage {
 
     public String getContactPhoneText() {
         logger.debug("Getting contact phone text");
-        return DriverManager.getTextFromElement(HomeLocators.SPAN_CONTACT_PHONE);
+        String phoneText = DriverManager.getTextFromElement(HomeLocators.SPAN_CONTACT_PHONE);
+        logger.info("Retrieved contact phone text: {}", phoneText);
+        return phoneText;
     }
 
     public String getHeaderWomenTrendZoneCategoryText() {
-        return DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_TREND_ZONE);
+        logger.debug("Getting Women Trend Zone category header text");
+        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_TREND_ZONE);
+        logger.info("Retrieved Women Trend Zone header: {}", headerText);
+        return headerText;
     }
 
     public String getHeaderWomenShoesCategoryText() {
-        return DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_SHOES_CATEGORY);
+        logger.debug("Getting Women Shoes category header text");
+        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_SHOES_CATEGORY);
+        logger.info("Retrieved Women Shoes header: {}", headerText);
+        return headerText;
     }
 
     public String getHeaderAccessoriesCategoryText() {
-        return DriverManager.getTextFromElement(HomeLocators.HEADER_ACCESSORIES_CATEGORY);
+        logger.debug("Getting Accessories category header text");
+        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_ACCESSORIES_CATEGORY);
+        logger.info("Retrieved Accessories header: {}", headerText);
+        return headerText;
     }
 
     public String getHeaderHaberdasheryCategoryText() {
-        return DriverManager.getTextFromElement(HomeLocators.HEADER_HABERDASHERY_CATEGORY);
+        logger.debug("Getting Haberdashery category header text");
+        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_HABERDASHERY_CATEGORY);
+        logger.info("Retrieved Haberdashery header: {}", headerText);
+        return headerText;
     }
 
     public String getHeaderDesignInKoreaCategoryText() {
-        return DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_DESIGN_IN_KOREA_CATEGORY);
+        logger.debug("Getting Design In Korea category header text");
+        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_DESIGN_IN_KOREA_CATEGORY);
+        logger.info("Retrieved Design In Korea header: {}", headerText);
+        return headerText;
     }
 }

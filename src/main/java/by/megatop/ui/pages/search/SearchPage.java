@@ -59,26 +59,38 @@ public class SearchPage {
 
     public String getSearchPageHeaderText() {
         logger.debug("Getting text from search page header");
-        return DriverManager.getTextFromElementWhenVisible(SearchLocators.HEADER_SEARCH_PAGE);
+        String headerText = DriverManager.getTextFromElementWhenVisible(SearchLocators.HEADER_SEARCH_PAGE);
+        logger.info("Retrieved search page header: {}", headerText);
+        return headerText;
     }
 
     public String getCounterText() {
         logger.debug("Getting counter text");
-        return DriverManager.getTextFromElement(SearchLocators.COUNTER);
+        String counterText = DriverManager.getTextFromElement(SearchLocators.COUNTER);
+        logger.info("Retrieved counter text: {}", counterText);
+        return counterText;
     }
 
     public List<String> getSearchResultItemsTitleText() {
         logger.debug("Getting search result items titles");
-        return DriverManager.findElements(SearchLocators.SEARCH_RESULTS).stream()
+        List<String> titles = DriverManager.findElements(SearchLocators.SEARCH_RESULTS).stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
+        logger.info("Retrieved {} search result items titles", titles.size());
+        return titles;
     }
 
     public String getSimilarQueriesText() {
-        return DriverManager.getTextFromElement(SearchLocators.SIMILAR_QUERIES_TEXT);
+        logger.debug("Getting similar queries text");
+        String similarQueriesText = DriverManager.getTextFromElement(SearchLocators.SIMILAR_QUERIES_TEXT);
+        logger.info("Retrieved similar queries text: {}", similarQueriesText);
+        return similarQueriesText;
     }
 
     public String getCategoriesText() {
-        return DriverManager.getTextFromElement(SearchLocators.CATEGORIES_SECTION);
+        logger.debug("Getting categories text");
+        String categoriesText = DriverManager.getTextFromElement(SearchLocators.CATEGORIES_SECTION);
+        logger.info("Retrieved categories text: {}", categoriesText);
+        return categoriesText;
     }
 }

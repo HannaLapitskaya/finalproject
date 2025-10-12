@@ -15,7 +15,7 @@ public class SearchService extends BaseAPIService {
 
     }
 
-    public void doRequest() {
+    public void doSearchRequest() {
         doGet(URL, getParams());
     }
 

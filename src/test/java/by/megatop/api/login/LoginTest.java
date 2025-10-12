@@ -44,15 +44,15 @@ public class LoginTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LGN-01")
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithIncorrectData() {
-        service.doRequest();
+        service.doLoginRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR)
+                () -> assertThat(jsonBody.get("error") != null || jsonBody.get("message") != null).isTrue(),
+                () -> assertThat(jsonBody.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR)
         );
     }
 
@@ -62,14 +62,14 @@ public class LoginTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LGN-02")
     public void shouldReturn500StatusCodeWhenLoginWithEmptyEmailAndEmptyPassword() {
-        service.doRequest("", "");
+        service.doLoginRequest("", "");
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.INTERNAL_SERVER_ERROR_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.SERVER_ERROR_MESSAGE)
+                () -> assertThat(jsonBody.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.SERVER_ERROR_MESSAGE)
         );
     }
 
@@ -79,16 +79,16 @@ public class LoginTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("LGN-03")
     public void shouldReturn422StatusCodeWhenLoginWithValidPhoneAndEmptyPassword() {
-        service.doRequest(generatePhoneNumberForAPI(), "");
+        service.doLoginRequest(generatePhoneNumberForAPI(), "");
 
-        JsonPath jsonPath = service.getJsonBody();
-        List<String> phoneErrors = jsonPath.getList("errors.phone");
+        JsonPath jsonBody = service.getJsonBody();
+        List<String> phoneErrors = jsonBody.getList("errors.phone");
 
         assertAll(
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
+                () -> assertThat(jsonBody.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonBody.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(phoneErrors.size()).isEqualTo(1)
         );
     }
@@ -99,18 +99,18 @@ public class LoginTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("LGN-04")
     public void shouldReturn422StatusCodeWithErrorMessageWhenLoginWithNonNumericPhone() {
-        service.doRequest(generatePassword(), "");
+        service.doLoginRequest(generatePassword(), "");
 
-        JsonPath jsonPath = service.getJsonBody();
-        List<String> phoneErrors = jsonPath.getList("errors.phone");
+        JsonPath jsonBody = service.getJsonBody();
+        List<String> phoneErrors = jsonBody.getList("errors.phone");
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
+                () -> assertThat(jsonBody.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonBody.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
-                () -> assertThat(jsonPath.getMap("errors")).isNotNull()
+                () -> assertThat(jsonBody.getMap("errors")).isNotNull()
         );
     }
 
@@ -120,18 +120,18 @@ public class LoginTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("LGN-05")
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingFewerThan12Digits() {
-        service.doRequest("37525", generatePassword());
+        service.doLoginRequest("37525", generatePassword());
 
-        JsonPath jsonPath = service.getJsonBody();
-        List<String> phoneErrors = jsonPath.getList("errors.phone");
+        JsonPath jsonBody = service.getJsonBody();
+        List<String> phoneErrors = jsonBody.getList("errors.phone");
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
-                () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
-                () -> assertThat(jsonPath.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
+                () -> assertThat(jsonBody.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonBody.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
+                () -> assertThat(jsonBody.getMap("errors")).isNotNull(),
+                () -> assertThat(jsonBody.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
                 () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
                 () -> assertThat(phoneErrors.size()).isEqualTo(1)
         );
@@ -143,17 +143,17 @@ public class LoginTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("LOGIN-006")
     public void shouldReturn422StatusCodeWithErrorMessageWhenPhoneHavingMoreThan12Digits() {
-        service.doRequest(generatePhoneNumberForAPI() + "123", generatePassword());
+        service.doLoginRequest(generatePhoneNumberForAPI() + "123", generatePassword());
 
-        JsonPath jsonPath = service.getJsonBody();
-        List<String> phoneErrors = jsonPath.getList("errors.phone");
+        JsonPath jsonBody = service.getJsonBody();
+        List<String> phoneErrors = jsonBody.getList("errors.phone");
 
         assertAll(
                 () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR),
-                () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
+                () -> assertThat(jsonBody.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR),
+                () -> assertThat(jsonBody.get("error") != null || jsonBody.get("message") != null).isTrue(),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
+                () -> assertThat(jsonBody.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
                 () -> assertThat(phoneErrors).extracting(List::isEmpty).isEqualTo(false)
         );
     }

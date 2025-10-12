@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class BasePage {
+
     private static final Logger logger = LoggerFactory.getLogger(BasePage.class);
 
     public void clickCityByLocationAndAcceptCookies() {
@@ -14,13 +15,13 @@ public abstract class BasePage {
         clickAcceptCookiesButton();
     }
 
-    public void clickCityByLocation() {
+    private void clickCityByLocation() {
         logger.debug("Clicking on 'Accept city' button");
         DriverManager.clickElementWhenClickable(PromoLocators.BUTTON_ACCEPT_CITY_BY_LOCATION);
         logger.info("City accepted by location successfully");
     }
 
-    public void clickAcceptCookiesButton() {
+    private void clickAcceptCookiesButton() {
         logger.debug("Clicking on 'Accept cookies' button");
         DriverManager.clickElementWhenClickable(PromoLocators.BUTTON_ACCEPT_COOKIES);
         WaitUtils.waitForPageToLoad();

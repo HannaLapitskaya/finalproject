@@ -20,12 +20,16 @@ public class LoginPage {
 
     public String getHeaderLoginFormText() {
         logger.debug("Getting login form header text");
-        return DriverManager.getTextFromElement(LoginLocators.HEADER_LOGIN_FORM);
+        String headerText = DriverManager.getTextFromElement(LoginLocators.HEADER_LOGIN_FORM);
+        logger.info("Retrieved login form header: {}", headerText);
+        return headerText;
     }
 
     public String getForgotPasswordText() {
         logger.debug("Getting 'Forgot password' link text");
-        return DriverManager.getTextFromElement(LoginLocators.LINK_FORGOT_PASSWORD);
+        String forgotPasswordText = DriverManager.getTextFromElement(LoginLocators.LINK_FORGOT_PASSWORD);
+        logger.info("Retrieved 'Forgot password' text: {}", forgotPasswordText);
+        return forgotPasswordText;
     }
 
     public void sendKeysInputPassword(String password) {
@@ -53,21 +57,29 @@ public class LoginPage {
 
     public String getErrorEmptyPhoneText() {
         logger.debug("Getting empty phone error message");
-        return DriverManager.getTextFromElement(LoginLocators.ERROR_EMPTY_PHONE);
+        String errorText = DriverManager.getTextFromElement(LoginLocators.ERROR_EMPTY_PHONE);
+        logger.info("Retrieved empty phone error: {}", errorText);
+        return errorText;
     }
 
     public String getErrorIncompletePhoneText() {
         logger.info("Getting incomplete phone error message");
-        return DriverManager.getTextFromElement(LoginLocators.ERROR_INCOMPLETE_PHONE);
+        String errorText = DriverManager.getTextFromElement(LoginLocators.ERROR_INCOMPLETE_PHONE);
+        logger.info("Retrieved incomplete phone error: {}", errorText);
+        return errorText;
     }
 
     public String getErrorInvalidCredentialsText() {
         logger.debug("Getting incomplete phone error message");
-        return DriverManager.getTextFromElement(LoginLocators.ERROR_INVALID_CREDENTIALS);
+        String errorText = DriverManager.getTextFromElement(LoginLocators.ERROR_INVALID_CREDENTIALS);
+        logger.info("Retrieved invalid credentials error: {}", errorText);
+        return errorText;
     }
 
     public String getErrorInvalidPhoneOperator() {
         logger.debug("Getting invalid credentials error message");
-        return DriverManager.getTextFromElement(LoginLocators.ERROR_INVALID_PHONE_OPERATOR);
+        String errorText = DriverManager.getTextFromElement(LoginLocators.ERROR_INVALID_PHONE_OPERATOR);
+        logger.info("Retrieved invalid phone operator error: {}", errorText);
+        return errorText;
     }
 }

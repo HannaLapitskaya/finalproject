@@ -1,12 +1,6 @@
 package by.megatop.api.search;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
-import io.qameta.allure.TmsLink;
+import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +36,7 @@ public class SearchTest {
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("SH-01")
     public void searchApiShouldReturn200StatusCode() {
-        service.doRequest();
+        service.doSearchRequest();
 
         assertThat(service.getStatusCode()).isEqualTo(SearchExpectedMessages.SUCCESS_STATUS_CODE);
     }
@@ -53,13 +47,12 @@ public class SearchTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-02")
     public void searchApiShouldReturnCorrectStructure() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getList("products").isEmpty()).isFalse(),
-                () -> assertThat(jsonPath.getList("categories").isEmpty())
+                () -> assertThat(jsonBody.getList("products").isEmpty()).isFalse()
         );
     }
 
@@ -69,19 +62,19 @@ public class SearchTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("SH-03")
     public void searchApiShouldReturnCorrectFirstProduct() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].name")).isEqualTo("Носки WiMi 0579000526"),
-                () -> assertThat(jsonPath.getString("products[0].modelId")).isEqualTo("0579000526"),
-                () -> assertThat(jsonPath.getDouble("products[0].price")).isEqualTo(4.94),
-                () -> assertThat(jsonPath.getInt("products[0].discount")).isEqualTo(0),
-                () -> assertThat(jsonPath.getBoolean("products[0].isOnSale")).isFalse(),
-                () -> assertThat(jsonPath.getBoolean("products[0].isNew")).isFalse(),
-                () -> assertThat(jsonPath.getBoolean("products[0].isHit")).isFalse(),
-                () -> assertThat(jsonPath.getBoolean("products[0].isInStock")).isTrue()
+                () -> assertThat(jsonBody.getString("products[0].name")).isEqualTo("Носки WiMi 0579000526"),
+                () -> assertThat(jsonBody.getString("products[0].modelId")).isEqualTo("0579000526"),
+                () -> assertThat(jsonBody.getDouble("products[0].price")).isEqualTo(4.94),
+                () -> assertThat(jsonBody.getInt("products[0].discount")).isEqualTo(0),
+                () -> assertThat(jsonBody.getBoolean("products[0].isOnSale")).isFalse(),
+                () -> assertThat(jsonBody.getBoolean("products[0].isNew")).isFalse(),
+                () -> assertThat(jsonBody.getBoolean("products[0].isHit")).isFalse(),
+                () -> assertThat(jsonBody.getBoolean("products[0].isInStock")).isTrue()
         );
     }
 
@@ -91,15 +84,15 @@ public class SearchTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-04")
     public void searchApiShouldReturnCorrectCategory() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].mainCategory.name")).isEqualTo("Женщины"),
-                () -> assertThat(jsonPath.getString("products[0].mainCategory.header")).isEqualTo("Женские товары"),
-                () -> assertThat(jsonPath.getString("products[0].mainCategory._id")).isEqualTo("5f6f69e557029375fc300615"),
-                () -> assertThat(jsonPath.getInt("products[0].mainCategory.rubricId")).isEqualTo(2)
+                () -> assertThat(jsonBody.getString("products[0].mainCategory.name")).isEqualTo("Женщины"),
+                () -> assertThat(jsonBody.getString("products[0].mainCategory.header")).isEqualTo("Женские товары"),
+                () -> assertThat(jsonBody.getString("products[0].mainCategory._id")).isEqualTo("5f6f69e557029375fc300615"),
+                () -> assertThat(jsonBody.getInt("products[0].mainCategory.rubricId")).isEqualTo(2)
         );
     }
 
@@ -109,13 +102,13 @@ public class SearchTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-05")
     public void searchApiShouldReturnCorrectLinks() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].link")).isEqualTo("/products/0579000526-noski-wimi"),
-                () -> assertThat(jsonPath.getString("products[0].url")).isEqualTo("/products/0579000526-noski-wimi"));
+                () -> assertThat(jsonBody.getString("products[0].link")).isEqualTo("/products/0579000526-noski-wimi"),
+                () -> assertThat(jsonBody.getString("products[0].url")).isEqualTo("/products/0579000526-noski-wimi"));
     }
 
     @Test
@@ -124,10 +117,10 @@ public class SearchTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-06")
     public void searchApiShouldReturnCorrectSecondProduct() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
-        List<String> images = jsonPath.getList("products[0].images");
+        JsonPath jsonBody = service.getJsonBody();
+        List<String> images = jsonBody.getList("products[0].images");
 
         assertAll(
                 () -> assertThat(images.getFirst()).isEqualTo("https://static.megatop.by/public/photo/0579000526/0579000526.jpg"),
@@ -141,17 +134,17 @@ public class SearchTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-07")
     public void searchApiShouldReturnCorrectAdditionalInfo() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].brand")).isEqualTo("WiMi"),
-                () -> assertThat(jsonPath.getString("products[0].article")).isEqualTo("0579000526"),
-                () -> assertThat(jsonPath.getString("products[0].fullCategory")).isEqualTo("Женщины/Аксессуары /Носки"),
-                () -> assertThat(jsonPath.getString("products[0].madeIn")).isEqualTo("Китай"),
-                () -> assertThat(jsonPath.getBoolean("products[0].isAvailableForOrder")).isTrue(),
-                () -> assertThat(jsonPath.getBoolean("products[0].isStockProduct")).isFalse()
+                () -> assertThat(jsonBody.getString("products[0].brand")).isEqualTo("WiMi"),
+                () -> assertThat(jsonBody.getString("products[0].article")).isEqualTo("0579000526"),
+                () -> assertThat(jsonBody.getString("products[0].fullCategory")).isEqualTo("Женщины/Аксессуары /Носки"),
+                () -> assertThat(jsonBody.getString("products[0].madeIn")).isEqualTo("Китай"),
+                () -> assertThat(jsonBody.getBoolean("products[0].isAvailableForOrder")).isTrue(),
+                () -> assertThat(jsonBody.getBoolean("products[0].isStockProduct")).isFalse()
         );
     }
 
@@ -161,15 +154,15 @@ public class SearchTest {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("SH-08")
     public void searchApiShouldReturnCorrectSizeInfo() {
-        service.doRequest();
+        service.doSearchRequest();
 
-        JsonPath jsonPath = service.getJsonBody();
+        JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonPath.getString("products[0].sizePrices[0].modelId")).isEqualTo("0579000526"),
-                () -> assertThat(jsonPath.getInt("products[0].sizePrices[0].size")).isEqualTo(25),
-                () -> assertThat(jsonPath.getDouble("products[0].sizePrices[0].price")).isEqualTo(4.94),
-                () -> assertThat(jsonPath.getString("products[0].sizePrices[0].type")).isEqualTo("original")
+                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].modelId")).isEqualTo("0579000526"),
+                () -> assertThat(jsonBody.getInt("products[0].sizePrices[0].size")).isEqualTo(25),
+                () -> assertThat(jsonBody.getDouble("products[0].sizePrices[0].price")).isEqualTo(4.94),
+                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].type")).isEqualTo("original")
         );
     }
 }
