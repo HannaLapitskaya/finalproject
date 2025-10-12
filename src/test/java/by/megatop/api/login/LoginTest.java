@@ -20,10 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("API login functionality tests")
 public class LoginTest {
 
-    private static final int UNPROCESSABLE_ENTITY_CODE = 422;
-    private static final int INTERNAL_SERVER_ERROR_CODE = 500;
-    private static final String ERROR_MESSAGE = "Вы ввели неверный номер телефона и/или пароль";
-
     private LoginService service;
 
     @BeforeEach
@@ -47,10 +43,10 @@ public class LoginTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE)
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR)
         );
     }
 
@@ -65,9 +61,9 @@ public class LoginTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(INTERNAL_SERVER_ERROR_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.INTERNAL_SERVER_ERROR_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase("Server Error")
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.SERVER_ERROR_MESSAGE)
         );
     }
 
@@ -84,9 +80,9 @@ public class LoginTest {
 
         assertAll(
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(phoneErrors.size()).isEqualTo(1)
         );
     }
@@ -103,10 +99,10 @@ public class LoginTest {
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
                 () -> assertThat(jsonPath.getMap("errors")).isNotNull()
         );
@@ -124,12 +120,12 @@ public class LoginTest {
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("status")).isEqualTo("error"),
-                () -> assertThat(jsonPath.getString("message")).isEqualTo(ERROR_MESSAGE),
+                () -> assertThat(jsonPath.getString("status")).isEqualTo(LoginExpectedMessages.STATUS_ERROR),
+                () -> assertThat(jsonPath.getString("message")).isEqualTo(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(jsonPath.getMap("errors")).isNotNull(),
-                () -> assertThat(jsonPath.getMap("errors")).asString().contains("phone"),
+                () -> assertThat(jsonPath.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
                 () -> assertThat(phoneErrors).isNotNull().extracting(List::isEmpty).isEqualTo(false),
                 () -> assertThat(phoneErrors.size()).isEqualTo(1)
         );
@@ -147,11 +143,11 @@ public class LoginTest {
         List<String> phoneErrors = jsonPath.getList("errors.phone");
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
-                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(ERROR_MESSAGE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(LoginExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(jsonPath.getString("message")).isNotBlank().containsIgnoringCase(LoginExpectedMessages.AUTHENTICATION_ERROR),
                 () -> assertThat(jsonPath.get("error") != null || jsonPath.get("message") != null).isTrue(),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getMap("errors")).asString().contains("phone"),
+                () -> assertThat(jsonPath.getMap("errors")).asString().contains(LoginExpectedMessages.PHONE_FIELD),
                 () -> assertThat(phoneErrors).extracting(List::isEmpty).isEqualTo(false)
         );
     }

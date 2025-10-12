@@ -18,10 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("API gift certificate functionality tests")
 public class GiftCertificateTest {
 
-    private static final int UNPROCESSABLE_ENTITY_CODE = 422;
-    private static final String ERROR_MESSAGE = "Ошибка валидации параметров";
-    private static final String ERROR_PHONE = "Должен быть валидный номер телефона";
-
     private GiftCertificateService service;
 
     @BeforeEach
@@ -45,9 +41,9 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).contains("Ошибка валидации параметров")
+                () -> assertThat(jsonPath.getString("data.message")).contains(GiftCertificateExpectedMessages.VALIDATION_ERROR)
         );
     }
 
@@ -62,10 +58,10 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
+                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -80,10 +76,10 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
+                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -98,10 +94,10 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
+                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -116,10 +112,10 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
+                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 
@@ -134,10 +130,10 @@ public class GiftCertificateTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(service.getStatusCode()).isEqualTo(UNPROCESSABLE_ENTITY_CODE),
+                () -> assertThat(service.getStatusCode()).isEqualTo(GiftCertificateExpectedMessages.UNPROCESSABLE_ENTITY_CODE),
                 () -> assertThat(service.getBody()).isNotNull().isNotBlank(),
-                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(ERROR_MESSAGE),
-                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(ERROR_PHONE)
+                () -> assertThat(jsonPath.getString("data.message")).isEqualTo(GiftCertificateExpectedMessages.VALIDATION_PARAMETERS_ERROR),
+                () -> assertThat(jsonPath.getList("data.errors.phone").getFirst()).isEqualTo(GiftCertificateExpectedMessages.ERROR_PHONE)
         );
     }
 }

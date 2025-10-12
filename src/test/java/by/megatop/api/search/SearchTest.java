@@ -38,7 +38,7 @@ public class SearchTest {
     public void searchApiShouldReturn200StatusCode() {
         service.doRequest();
 
-        assertThat(service.getStatusCode()).isEqualTo(200);
+        assertThat(service.getStatusCode()).isEqualTo(SearchExpectedMessages.SUCCESS_STATUS_CODE);
     }
 
     @Test
@@ -52,8 +52,8 @@ public class SearchTest {
         JsonPath jsonPath = service.getJsonPath();
 
         assertAll(
-                () -> assertThat(jsonPath.getList("categories").isEmpty()),
-                () -> assertThat(jsonPath.getList("products").isEmpty()).isFalse()
+                () -> assertThat(jsonPath.getList("products").isEmpty()).isFalse(),
+                () -> assertThat(jsonPath.getList("categories").isEmpty())
         );
     }
 

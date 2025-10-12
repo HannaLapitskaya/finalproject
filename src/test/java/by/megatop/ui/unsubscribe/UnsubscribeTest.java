@@ -19,7 +19,7 @@ public class UnsubscribeTest {
     private BasePage basePage;
 
     @BeforeEach
-    public void openUnsubscribePage() {
+    public void openUnsubscribePageAndCloseCookies() {
         unsubscribePage = new UnsubscribePage();
         basePage = new BasePage();
 
