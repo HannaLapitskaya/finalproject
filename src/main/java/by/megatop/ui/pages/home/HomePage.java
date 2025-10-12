@@ -42,7 +42,7 @@ public class HomePage {
 
     public String getHeaderHaberdasheryCategoryText() {
         logger.debug("Getting Haberdashery category header text");
-        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_HABERDASHERY_CATEGORY);
+        String headerText = DriverManager.getTextFromElementWhenVisibleWithRetry(HomeLocators.HEADER_HABERDASHERY_CATEGORY);
         logger.info("Retrieved Haberdashery header: {}", headerText);
         return headerText;
     }

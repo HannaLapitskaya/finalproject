@@ -67,10 +67,10 @@ public class SearchTest {
         JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonBody.getString("products[0].name")).isEqualTo("Носки WiMi 0579000526"),
-                () -> assertThat(jsonBody.getString("products[0].modelId")).isEqualTo("0579000526"),
-                () -> assertThat(jsonBody.getDouble("products[0].price")).isEqualTo(4.94),
-                () -> assertThat(jsonBody.getInt("products[0].discount")).isEqualTo(0),
+                () -> assertThat(jsonBody.getString("products[0].name")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_NAME),
+                () -> assertThat(jsonBody.getString("products[0].modelId")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_MODEL_ID),
+                () -> assertThat(jsonBody.getDouble("products[0].price")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_PRICE),
+                () -> assertThat(jsonBody.getInt("products[0].discount")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_DISCOUNT),
                 () -> assertThat(jsonBody.getBoolean("products[0].isOnSale")).isFalse(),
                 () -> assertThat(jsonBody.getBoolean("products[0].isNew")).isFalse(),
                 () -> assertThat(jsonBody.getBoolean("products[0].isHit")).isFalse(),
@@ -89,10 +89,10 @@ public class SearchTest {
         JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonBody.getString("products[0].mainCategory.name")).isEqualTo("Женщины"),
-                () -> assertThat(jsonBody.getString("products[0].mainCategory.header")).isEqualTo("Женские товары"),
-                () -> assertThat(jsonBody.getString("products[0].mainCategory._id")).isEqualTo("5f6f69e557029375fc300615"),
-                () -> assertThat(jsonBody.getInt("products[0].mainCategory.rubricId")).isEqualTo(2)
+                () -> assertThat(jsonBody.getString("products[0].mainCategory.name")).isEqualTo(SearchExpectedMessages.MAIN_CATEGORY_NAME),
+                () -> assertThat(jsonBody.getString("products[0].mainCategory.header")).isEqualTo(SearchExpectedMessages.MAIN_CATEGORY_HEADER),
+                () -> assertThat(jsonBody.getString("products[0].mainCategory._id")).isEqualTo(SearchExpectedMessages.MAIN_CATEGORY_ID),
+                () -> assertThat(jsonBody.getInt("products[0].mainCategory.rubricId")).isEqualTo(SearchExpectedMessages.MAIN_CATEGORY_RUBRIC_ID)
         );
     }
 
@@ -107,8 +107,8 @@ public class SearchTest {
         JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonBody.getString("products[0].link")).isEqualTo("/products/0579000526-noski-wimi"),
-                () -> assertThat(jsonBody.getString("products[0].url")).isEqualTo("/products/0579000526-noski-wimi"));
+                () -> assertThat(jsonBody.getString("products[0].link")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_LINK),
+                () -> assertThat(jsonBody.getString("products[0].url")).isEqualTo(SearchExpectedMessages.FIRST_PRODUCT_URL));
     }
 
     @Test
@@ -123,8 +123,8 @@ public class SearchTest {
         List<String> images = jsonBody.getList("products[0].images");
 
         assertAll(
-                () -> assertThat(images.getFirst()).isEqualTo("https://static.megatop.by/public/photo/0579000526/0579000526.jpg"),
-                () -> assertThat(images.getLast()).isEqualTo("https://static.megatop.by/public/photo/0579000526/0579000526_2.jpg")
+                () -> assertThat(images.getFirst()).isEqualTo(SearchExpectedMessages.PRODUCT_FIRST_IMAGE),
+                () -> assertThat(images.getLast()).isEqualTo(SearchExpectedMessages.PRODUCT_LAST_IMAGE)
         );
     }
 
@@ -139,10 +139,10 @@ public class SearchTest {
         JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonBody.getString("products[0].brand")).isEqualTo("WiMi"),
-                () -> assertThat(jsonBody.getString("products[0].article")).isEqualTo("0579000526"),
-                () -> assertThat(jsonBody.getString("products[0].fullCategory")).isEqualTo("Женщины/Аксессуары /Носки"),
-                () -> assertThat(jsonBody.getString("products[0].madeIn")).isEqualTo("Китай"),
+                () -> assertThat(jsonBody.getString("products[0].brand")).isEqualTo(SearchExpectedMessages.PRODUCT_BRAND),
+                () -> assertThat(jsonBody.getString("products[0].article")).isEqualTo(SearchExpectedMessages.PRODUCT_ARTICLE),
+                () -> assertThat(jsonBody.getString("products[0].fullCategory")).isEqualTo(SearchExpectedMessages.PRODUCT_FULL_CATEGORY),
+                () -> assertThat(jsonBody.getString("products[0].madeIn")).isEqualTo(SearchExpectedMessages.PRODUCT_MADE_IN),
                 () -> assertThat(jsonBody.getBoolean("products[0].isAvailableForOrder")).isTrue(),
                 () -> assertThat(jsonBody.getBoolean("products[0].isStockProduct")).isFalse()
         );
@@ -159,10 +159,10 @@ public class SearchTest {
         JsonPath jsonBody = service.getJsonBody();
 
         assertAll(
-                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].modelId")).isEqualTo("0579000526"),
-                () -> assertThat(jsonBody.getInt("products[0].sizePrices[0].size")).isEqualTo(25),
-                () -> assertThat(jsonBody.getDouble("products[0].sizePrices[0].price")).isEqualTo(4.94),
-                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].type")).isEqualTo("original")
+                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].modelId")).isEqualTo(SearchExpectedMessages.FIRST_SIZE_PRICE_MODEL_ID),
+                () -> assertThat(jsonBody.getInt("products[0].sizePrices[0].size")).isEqualTo(SearchExpectedMessages.SIZE_PRICE),
+                () -> assertThat(jsonBody.getDouble("products[0].sizePrices[0].price")).isEqualTo(SearchExpectedMessages.FIRST_SIZE_PRICE_PRICE),
+                () -> assertThat(jsonBody.getString("products[0].sizePrices[0].type")).isEqualTo(SearchExpectedMessages.FIRST_SIZE_PRICE_TYPE)
         );
     }
 }
