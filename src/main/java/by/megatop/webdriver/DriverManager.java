@@ -66,7 +66,7 @@ public class DriverManager {
                 waitForElementClickable(xpath).click();
                 return;
             } catch (Exception e) {
-                if (i == 2) throw new RuntimeException("Click failed after 3 attempts: " + xpath, e);
+                if (i == MAX_RETRY_ATTEMPTS - 1) throw new RuntimeException("Click failed after 3 attempts: " + xpath, e);
             }
         }
     }
@@ -88,7 +88,7 @@ public class DriverManager {
             try {
                 return waitForElementVisible(xpath).getText();
             } catch (StaleElementReferenceException e) {
-                if (i == 2) throw e;
+                if (i == MAX_RETRY_ATTEMPTS - 1) throw e;
             }
         }
         return null;
