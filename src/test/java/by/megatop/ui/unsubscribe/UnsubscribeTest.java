@@ -73,3 +73,4 @@ public class UnsubscribeTest {
         Assertions.assertEquals(UnsubscribeExpectedMessages.UNSUBSCRIBE_SUCCESS_MESSAGE, unsubscribePage.getSuccessfulUnsubscribeText());
     }
 }
+
