@@ -21,21 +21,21 @@ public class HomePage {
 
     public String getHeaderWomenTrendZoneCategoryText() {
         logger.debug("Getting Women Trend Zone category header text");
-        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_TREND_ZONE);
+        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_WOMEN_TREND_ZONE);
         logger.info("Retrieved Women Trend Zone header: {}", headerText);
         return headerText;
     }
 
     public String getHeaderWomenShoesCategoryText() {
         logger.debug("Getting Women Shoes category header text");
-        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_WOMEN_SHOES_CATEGORY);
+        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_WOMEN_SHOES_CATEGORY);
         logger.info("Retrieved Women Shoes header: {}", headerText);
         return headerText;
     }
 
     public String getHeaderAccessoriesCategoryText() {
         logger.debug("Getting Accessories category header text");
-        String headerText = DriverManager.getTextFromElement(HomeLocators.HEADER_ACCESSORIES_CATEGORY);
+        String headerText = DriverManager.getTextFromElementWhenVisible(HomeLocators.HEADER_ACCESSORIES_CATEGORY);
         logger.info("Retrieved Accessories header: {}", headerText);
         return headerText;
     }
