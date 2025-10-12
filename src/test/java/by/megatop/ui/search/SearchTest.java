@@ -25,8 +25,7 @@ public class SearchTest extends BaseTest {
     @BeforeEach
     public void openSearchPage() {
         searchPage = new SearchPage();
-        searchPage.openSearchButton();
-        searchPage.clickSearchInput();
+        searchPage.clickSearchButtonAndSearchInput();
     }
 
     @Test

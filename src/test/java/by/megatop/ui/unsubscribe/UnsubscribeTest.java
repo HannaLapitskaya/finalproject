@@ -59,7 +59,6 @@ public class UnsubscribeTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("UNS-03")
     public void shouldDisplayPlaceholderWhenInputRendered() {
-
         Assertions.assertEquals(UnsubscribeExpectedMessages.EMAIL_PLACEHOLDER_TEXT, unsubscribePage.getPlaceholderInputFieldText());
     }
 

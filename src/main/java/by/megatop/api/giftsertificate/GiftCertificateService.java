@@ -1,11 +1,10 @@
 package by.megatop.api.giftsertificate;
 
 import by.megatop.api.base.BaseAPIService;
+import static by.megatop.api.base.APIConstants.BASE_URL;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static by.megatop.api.base.APIConstants.BASE_URL;
 
 public class GiftCertificateService extends BaseAPIService {
 

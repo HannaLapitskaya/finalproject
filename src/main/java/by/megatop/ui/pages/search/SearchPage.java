@@ -1,6 +1,5 @@
 package by.megatop.ui.pages.search;
 
-import by.megatop.ui.pages.cart.CartLocators;
 import by.megatop.utils.WaitUtils;
 import by.megatop.webdriver.DriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +21,7 @@ public class SearchPage {
 
     }
 
-    public void openSearchButton() {
+    public void clickSearchButton() {
         logger.debug("Opening search input");
         DriverManager.clickElement(SearchLocators.BUTTON_SEARCH);
         logger.info("Search input opened");
@@ -32,6 +31,11 @@ public class SearchPage {
         logger.debug("Clicking on search input");
         DriverManager.clickElement(SearchLocators.INPUT_SEARCH);
         logger.info("Search input clicked");
+    }
+
+    public void clickSearchButtonAndSearchInput() {
+        clickSearchButton();
+        clickSearchInput();
     }
 
     public void sendKeysSearch(String search) {
